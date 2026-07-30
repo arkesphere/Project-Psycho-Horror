@@ -11423,19 +11423,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4459864851040260862}
+    m_TransformParent: {fileID: 4459864851241182331}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.12997203
+      value: 0.111
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8500015
+      value: -1.723
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15078391
+      value: -0.193
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11447,7 +11447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.1305259
+      value: -0.13052587
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -18537,7 +18537,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4459864851241182331}
-  - {fileID: 1392923586}
   m_Father: {fileID: 4459864850482990820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4459864851040260863
@@ -18571,6 +18570,7 @@ Transform:
   m_Children:
   - {fileID: 955984415}
   - {fileID: 1232031329}
+  - {fileID: 1392923586}
   m_Father: {fileID: 4459864851040260862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4459864851241182332
@@ -18584,14 +18584,14 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 2
+  m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 20.78461
+  m_FocalLength: 19.892056
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -18606,7 +18606,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 63.23288
+  field of view: 65.5
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
