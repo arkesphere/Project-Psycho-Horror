@@ -1,4 +1,4 @@
-﻿// CHANGE LOG
+// CHANGE LOG
 //
 // CHANGES || version VERSION
 //
@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SurvivalHorror;
+using UnityEngine.InputSystem;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -32,6 +33,14 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 movementInput;
     private bool sprintInput;
     private bool jumpRequested;
+
+    [Header("Input Actions")]
+    [SerializeField] private InputActionReference moveInput;
+    [SerializeField] private InputActionReference lookInput;
+    [SerializeField] private InputActionReference sprintInputAction;
+    [SerializeField] private InputActionReference jumpInput;
+    [SerializeField] private InputActionReference zoomInput;
+    [SerializeField] private InputActionReference crouchInput;
 
     #region Camera Movement Variables
 
@@ -58,7 +67,7 @@ public class FirstPersonController : MonoBehaviour
 
     public bool enableZoom = true;
     public bool holdToZoom = false;
-    public KeyCode zoomKey = KeyCode.Mouse1;
+
     public float zoomFOV = 30f;
     public float zoomStepTime = 5f;
 
@@ -81,7 +90,7 @@ public class FirstPersonController : MonoBehaviour
 
     public bool enableSprint = true;
     public bool unlimitedSprint = false;
-    public KeyCode sprintKey = KeyCode.LeftShift;
+
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
     public float sprintCooldown = .5f;
@@ -110,7 +119,7 @@ public class FirstPersonController : MonoBehaviour
     #region Jump
 
     public bool enableJump = true;
-    public KeyCode jumpKey = KeyCode.Space;
+
     public float jumpPower = 5f;
 
     // Internal Variables
@@ -122,7 +131,7 @@ public class FirstPersonController : MonoBehaviour
 
     public bool enableCrouch = true;
     public bool holdToCrouch = true;
-    public KeyCode crouchKey = KeyCode.LeftControl;
+
     public float speedReduction = .5f;
 
     public CapsuleCollider bodyCollider;
@@ -170,6 +179,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
+        SetInputActionsEnabled(true);
+
         rb = GetComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         yaw = rb.rotation.eulerAngles.y;
@@ -275,28 +286,29 @@ public class FirstPersonController : MonoBehaviour
 
         // Input is sampled once per rendered frame, then consumed by physics
         // in FixedUpdate. Reading input directly in FixedUpdate can feel uneven.
-        movementInput = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
-        );
-        movementInput = Vector2.ClampMagnitude(movementInput, 1f);
-        sprintInput = Input.GetKey(sprintKey);
+        movementInput = moveInput != null
+            ? Vector2.ClampMagnitude(moveInput.action.ReadValue<Vector2>(), 1f)
+            : Vector2.zero;
+        sprintInput = sprintInputAction != null && sprintInputAction.action.IsPressed();
+        Vector2 lookValue = lookInput != null
+            ? lookInput.action.ReadValue<Vector2>()
+            : Vector2.zero;
 
         #region Camera
 
         // Control camera movement
         if(cameraCanMove)
         {
-            yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
+            yaw += lookValue.x * mouseSensitivity;
 
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch -= lookValue.y * mouseSensitivity;
             }
             else
             {
                 // Inverted Y
-                pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch += lookValue.y * mouseSensitivity;
             }
 
             // Clamp pitch between lookAngle
@@ -310,7 +322,7 @@ public class FirstPersonController : MonoBehaviour
         {
             // Changes isZoomed when key is pressed
             // Behavior for toogle zoom
-            if(Input.GetKeyDown(zoomKey) && !holdToZoom && !isSprinting)
+            if(zoomInput != null && zoomInput.action.WasPressedThisFrame() && !holdToZoom && !isSprinting)
             {
                 if (!isZoomed)
                 {
@@ -326,7 +338,7 @@ public class FirstPersonController : MonoBehaviour
             // Behavior for hold to zoom
             if(holdToZoom && !isSprinting)
             {
-                isZoomed = Input.GetKey(zoomKey);
+                isZoomed = zoomInput != null && zoomInput.action.IsPressed();
             }
 
             // Lerps camera.fieldOfView to allow for a smooth transistion
@@ -397,7 +409,7 @@ public class FirstPersonController : MonoBehaviour
         #region Jump
 
         // Gets input and calls jump method
-        if(enableJump && Input.GetKeyDown(jumpKey))
+        if(enableJump && jumpInput != null && jumpInput.action.WasPressedThisFrame())
         {
             jumpRequested = true;
         }
@@ -406,15 +418,14 @@ public class FirstPersonController : MonoBehaviour
 
         #region Crouch
 
-        // Idempotent state, not edge events. A missed KeyUp can no longer desync
-        // the crouch, which is what used to strand the player crouched forever.
-        if (enableCrouch)
+        // Idempotent state prevents missed release events from desynchronizing crouch.
+        if (enableCrouch && crouchInput != null)
         {
             if (holdToCrouch)
             {
-                SetCrouched(Input.GetKey(crouchKey));
+                SetCrouched(crouchInput.action.IsPressed());
             }
-            else if (Input.GetKeyDown(crouchKey))
+            else if (crouchInput.action.WasPressedThisFrame())
             {
                 ToggleCrouch();
             }
@@ -443,10 +454,10 @@ public class FirstPersonController : MonoBehaviour
         isWalking     = false;
         isSprinting   = false;
 
-        // Hold-style keys never receive their KeyUp while Update is short-circuited,
-        // so read the raw key state instead of waiting for an event.
+        // Hold actions are reset while control is suspended so they cannot remain latched.
         if (holdToZoom) isZoomed = false;
-        if (enableCrouch && holdToCrouch) SetCrouched(Input.GetKey(crouchKey));
+        if (enableCrouch && holdToCrouch && crouchInput != null)
+            SetCrouched(crouchInput.action.IsPressed());
 
         // Ease the FOV back from sprint/zoom and settle the head bob to neutral, so
         // the examined item isn't framed by a lurching 80-degree sprint camera.
@@ -735,6 +746,38 @@ public class FirstPersonController : MonoBehaviour
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
         }
     }
+
+
+    private void OnEnable()
+    {
+        SetInputActionsEnabled(true);
+    }
+
+    private void OnDisable()
+    {
+        SetInputActionsEnabled(false);
+    }
+
+    private void SetInputActionsEnabled(bool enabled)
+    {
+        SetInputActionEnabled(moveInput, enabled);
+        SetInputActionEnabled(lookInput, enabled);
+        SetInputActionEnabled(sprintInputAction, enabled);
+        SetInputActionEnabled(jumpInput, enabled);
+        SetInputActionEnabled(zoomInput, enabled);
+        SetInputActionEnabled(crouchInput, enabled);
+    }
+
+    private static void SetInputActionEnabled(InputActionReference inputReference, bool enabled)
+    {
+        if (inputReference == null || inputReference.action == null)
+            return;
+
+        if (enabled)
+            inputReference.action.Enable();
+        else
+            inputReference.action.Disable();
+    }
 }
 
 
@@ -761,6 +804,10 @@ public class FirstPersonController : MonoBehaviour
         GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
         GUILayout.Label("By Jess Case", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         GUILayout.Label("version 1.0.3", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
+        EditorGUILayout.Space();
+        GUILayout.Label("Input Actions", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.PropertyField(SerFPC.FindProperty("moveInput"), new GUIContent("Move Input", "Vector2 action used for player movement."));
+        EditorGUILayout.PropertyField(SerFPC.FindProperty("lookInput"), new GUIContent("Look Input", "Vector2 action used for camera look."));
         EditorGUILayout.Space();
 
         #region Camera Setup
@@ -808,7 +855,7 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableZoom;
         fpc.holdToZoom = EditorGUILayout.ToggleLeft(new GUIContent("Hold to Zoom", "Requires the player to hold the zoom key instead if pressing to zoom and unzoom."), fpc.holdToZoom);
-        fpc.zoomKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Zoom Key", "Determines what key is used to zoom."), fpc.zoomKey);
+        EditorGUILayout.PropertyField(SerFPC.FindProperty("zoomInput"), new GUIContent("Zoom Input", "Button action used for zoom."));
         fpc.zoomFOV = EditorGUILayout.Slider(new GUIContent("Zoom FOV", "Determines the field of view the camera zooms to."), fpc.zoomFOV, .1f, fpc.fov);
         fpc.zoomStepTime = EditorGUILayout.Slider(new GUIContent("Step Time", "Determines how fast the FOV transitions while zooming in."), fpc.zoomStepTime, .1f, 10f);
         GUI.enabled = true;
@@ -848,7 +895,7 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableSprint;
         fpc.unlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), fpc.unlimitedSprint);
-        fpc.sprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.sprintKey);
+        EditorGUILayout.PropertyField(SerFPC.FindProperty("sprintInputAction"), new GUIContent("Sprint Input", "Button action held to sprint."));
         fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
 
         //GUI.enabled = !fpc.unlimitedSprint;
@@ -903,7 +950,7 @@ public class FirstPersonController : MonoBehaviour
         fpc.enableJump = EditorGUILayout.ToggleLeft(new GUIContent("Enable Jump", "Determines if the player is allowed to jump."), fpc.enableJump);
 
         GUI.enabled = fpc.enableJump;
-        fpc.jumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), fpc.jumpKey);
+        EditorGUILayout.PropertyField(SerFPC.FindProperty("jumpInput"), new GUIContent("Jump Input", "Button action used to jump."));
         fpc.jumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.jumpPower, .1f, 20f);
         GUI.enabled = true;
 
@@ -919,7 +966,7 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableCrouch;
         fpc.holdToCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Crouch", "Requires the player to hold the crouch key instead if pressing to crouch and uncrouch."), fpc.holdToCrouch);
-        fpc.crouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.crouchKey);
+        EditorGUILayout.PropertyField(SerFPC.FindProperty("crouchInput"), new GUIContent("Crouch Input", "Button action used to crouch."));
         fpc.speedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Walk speed multiplier at full crouch. 1 is no reduction, .5 is half. Applied at the point of use, never written back to Walk Speed."), fpc.speedReduction, .1f, 1);
 
         EditorGUILayout.Space();
