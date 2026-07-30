@@ -214,12 +214,12 @@ public class FirstPersonController : MonoBehaviour
         PlayerControlGate.ManageCursor = lockCursor;
         PlayerControlGate.ForceClear();
 
-        if(crosshair)
+        if(crosshair && crosshairObject != null)
         {
             crosshairObject.sprite = crosshairImage;
             crosshairObject.color = crosshairColor;
         }
-        else
+        else if (crosshairObject != null)
         {
             crosshairObject.gameObject.SetActive(false);
         }

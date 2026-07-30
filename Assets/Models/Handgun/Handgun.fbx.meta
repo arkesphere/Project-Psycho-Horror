@@ -1,0 +1,389 @@
+fileFormatVersion: 2
+guid: 0002525f379836c48adba11d7f34cc13
+ModelImporter:
+  serializedVersion: 24501
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Casing_Base_color
+    second: {fileID: 2800000, guid: a9f79ca55da9d7c46afeeb18827fc4b9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Casing_Metallic
+    second: {fileID: 2800000, guid: 05e25d35db85ddd4fb02f0b1cdc79a1f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Casing_Roughness
+    second: {fileID: 2800000, guid: 9e5eedb51b0a50142ab7c9d3c987bb7a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Head_Base_color
+    second: {fileID: 2800000, guid: b1786ad420705354c86fa1cef6f5656a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Head_Metallic
+    second: {fileID: 2800000, guid: fc44c491cfad0ab46b9443a1215a5463, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Head_Normal_OpenGL
+    second: {fileID: 2800000, guid: 1b798a6932262d241abb27885d24d821, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Head_Roughness
+    second: {fileID: 2800000, guid: 9be1985859df3b9489b001adec933d8b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Nuts_Base_color
+    second: {fileID: 2800000, guid: 79ca91a8289b64e42bd95d6192a365b1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Nuts_Metallic
+    second: {fileID: 2800000, guid: 25621e09c2413db4882c609a4d20b970, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Nuts_Normal_OpenGL
+    second: {fileID: 2800000, guid: 7618e736049505f4a8b9b22c48b18099, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Nuts_Roughness
+    second: {fileID: 2800000, guid: 37ee2c682b380064a843e7c7648d8b54, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Screws_Base_color
+    second: {fileID: 2800000, guid: 32ef98ed63bae2a49a0320187db28e73, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Screws_Metallic
+    second: {fileID: 2800000, guid: 3811f6b1066088b4b8d0a61bb4ddec8a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Screws_Normal_OpenGL
+    second: {fileID: 2800000, guid: 43d8630a501e96847bc1eb84f92dff73, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Screws_Roughness
+    second: {fileID: 2800000, guid: ab97bc302bdd62a4e9d9bcd5750fcfcd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Wood_Base_color
+    second: {fileID: 2800000, guid: 12e7cf7babceebd4b927f5b856631f0a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Wood_Metallic
+    second: {fileID: 2800000, guid: 4990fac6f70536346b610bd61c5df173, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Wood_Normal_OpenGL
+    second: {fileID: 2800000, guid: c1bcf980740d0d441a3b457bb4d50638, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grip_Wood_Roughness
+    second: {fileID: 2800000, guid: 828909746159ba04691fb4ce01a584f2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_2_Base_color
+    second: {fileID: 2800000, guid: bd3dd001804d45448ba0fb6fe453c0b9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_2_Metallic
+    second: {fileID: 2800000, guid: c883798090ab1b34ca49d78cad919333, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_2_Normal_OpenGL
+    second: {fileID: 2800000, guid: 03caad3e91876d8489f95260cfda634d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_2_Roughness
+    second: {fileID: 2800000, guid: a75c1ae1a4f03f84e88a74e2df4935e6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_Base_color
+    second: {fileID: 2800000, guid: d31d977f00a33b641946e649bc578b0a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_Metallic
+    second: {fileID: 2800000, guid: db98599ef8f9d4e469e278ee844162cd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_Normal_OpenGL
+    second: {fileID: 2800000, guid: 5d412561f67908f4a96f89f1428bda2b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External_Roughness
+    second: {fileID: 2800000, guid: 2404cb69dfea5f543b3e6e5509b21f22, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_Internal_Base_color
+    second: {fileID: 2800000, guid: ab44065de00406449b4a154324d79097, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_Internal_Metallic
+    second: {fileID: 2800000, guid: 4045d5bbf891bac448802a079ac160f9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_Internal_Normal_OpenGL
+    second: {fileID: 2800000, guid: 89c602f5823315244a7a6134b97e66c1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_Internal_Roughness
+    second: {fileID: 2800000, guid: 04b68cef233d3ca47b522d809ca12e85, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Large_Grip_Pin_Metal_Base_color
+    second: {fileID: 2800000, guid: 1aabcfe4411c23e4d85ab7ae9bccf6b3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Large_Grip_Pin_Metal_Metallic
+    second: {fileID: 2800000, guid: 09c4bbe5467be39478dd6f59a6a32447, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Large_Grip_Pin_Metal_Normal_OpenGL
+    second: {fileID: 2800000, guid: 8c91c93c33c6ed14991749736d1ccd8c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Large_Grip_Pin_Metal_Roughness
+    second: {fileID: 2800000, guid: 290a917b4fb8b9c4bb4aed92a5a82db6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Levers_Metal_Base_color
+    second: {fileID: 2800000, guid: 43d12afdf36d82f40ab0a41eacd83dc4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Levers_Metal_Metallic
+    second: {fileID: 2800000, guid: ec7164ba65668974cb8e898d587b2519, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Levers_Metal_Normal_OpenGL
+    second: {fileID: 2800000, guid: 0cba0afe814775548bd8e13c86d283c1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Levers_Metal_Roughness
+    second: {fileID: 2800000, guid: c56f03f0bb03cbc4b8199d6ced1ebc8e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mag_Metal_Base_color
+    second: {fileID: 2800000, guid: c4e47edc2641827409ab11a6dd73e2a5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mag_Metal_Metallic
+    second: {fileID: 2800000, guid: 133b1bdba1bdee742bddc5865278013f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mag_Metal_Normal_OpenGL
+    second: {fileID: 2800000, guid: 6e3b4057ea3471b41b4392db2c6fdb97, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mag_Metal_Roughness
+    second: {fileID: 2800000, guid: c575be20222a977429158719e391ec1f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pins_Metal_Base_color
+    second: {fileID: 2800000, guid: c9423e0005fba5640a455bfdd3ee109b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pins_Metal_Metallic
+    second: {fileID: 2800000, guid: f0110fafd8bc0f540bd0ccb27160ba1c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pins_Metal_Normal_OpenGL
+    second: {fileID: 2800000, guid: 2c554b5c15e214c4882ee3722dc41a5e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pins_Metal_Roughness
+    second: {fileID: 2800000, guid: 3086fe2da1e70934b9de8f06637ad024, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rear_Sight_Metal_Base_color
+    second: {fileID: 2800000, guid: cb60e62cd81bc964ab1d269aa0f5fa3b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rear_Sight_Metal_Metallic
+    second: {fileID: 2800000, guid: 54e01916acae94943bd4816e76cdd1e1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rear_Sight_Metal_Roughness
+    second: {fileID: 2800000, guid: 290770dff6d6f134aa3693c2475ab047, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: S&W_Model41_Rear_Sight_Metal_normal
+    second: {fileID: 2800000, guid: 7650b198173a2154aaae4f3ccc6e3f95, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Scews_Metal_Base_color
+    second: {fileID: 2800000, guid: 540359ac72566eb45810add4f6c0c697, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Scews_Metal_Metallic
+    second: {fileID: 2800000, guid: 46f2a6520cb48134a972f7e4f83457ce, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Scews_Metal_Normal_OpenGL
+    second: {fileID: 2800000, guid: 65c3845010d643447908c14a22c09176, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Scews_Metal_Roughness
+    second: {fileID: 2800000, guid: 506e662659622294eb50ccfc2b29fd6d, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+    searchTexturesGlobally: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    importUVs: -1
+    importVertexColors: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+    calculateBlendshapeNormalsDeltaFromImportedNormals: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

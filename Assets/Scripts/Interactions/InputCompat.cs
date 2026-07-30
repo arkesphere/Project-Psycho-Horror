@@ -88,5 +88,83 @@ namespace SurvivalHorror
 #endif
             }
         }
+
+        /// <summary>Fire/attack with the currently held weapon. Default: left mouse button.</summary>
+        public static bool FirePressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
+#else
+                return Input.GetMouseButtonDown(0);
+#endif
+            }
+        }
+
+        /// <summary>Reload the current weapon. Default: R.</summary>
+        public static bool ReloadPressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame;
+#else
+                return Input.GetKeyDown(KeyCode.R);
+#endif
+            }
+        }
+
+        /// <summary>Play the weapon inspect animation. Default: I.</summary>
+        public static bool InspectPressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Keyboard.current != null && Keyboard.current.iKey.wasPressedThisFrame;
+#else
+                return Input.GetKeyDown(KeyCode.I);
+#endif
+            }
+        }
+
+        /// <summary>Generic hand-touch gesture (e.g. checking a door). Default: T.</summary>
+        public static bool TouchPressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame;
+#else
+                return Input.GetKeyDown(KeyCode.T);
+#endif
+            }
+        }
+
+        /// <summary>Switch to the knife. Default: 2.</summary>
+        public static bool EquipKnifePressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Keyboard.current != null && Keyboard.current.digit2Key.wasPressedThisFrame;
+#else
+                return Input.GetKeyDown(KeyCode.Alpha2);
+#endif
+            }
+        }
+
+        /// <summary>Switch to the gun. Default: 1.</summary>
+        public static bool EquipGunPressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Keyboard.current != null && Keyboard.current.digit1Key.wasPressedThisFrame;
+#else
+                return Input.GetKeyDown(KeyCode.Alpha1);
+#endif
+            }
+        }
     }
 }
