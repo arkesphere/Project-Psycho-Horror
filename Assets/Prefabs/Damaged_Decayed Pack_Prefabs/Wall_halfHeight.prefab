@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5145827045559549916
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.478975
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000009687889
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.4789987
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ccb393cba36d814097a56ad06c99db6, type: 2}
+    - target: {fileID: 919132149155446097, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: m_Name
+      value: Wall_halfHeight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825129784908404729, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dff9dc2219af4af439f8f7f73be7e94c, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2096170784170772017}
+  m_SourcePrefab: {fileID: 100100000, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+--- !u!1 &5451835767139697293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c456b488b15a134a838216fbe847bf4, type: 3}
+  m_PrefabInstance: {fileID: 5145827045559549916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2096170784170772017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451835767139697293}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.100000605, y: 2.5000005, z: 1.0230007}
+  m_Center: {x: -0.04999972, y: 1.2499998, z: 0.51149964}

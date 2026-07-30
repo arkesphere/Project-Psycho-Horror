@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763e9259b44b877459297f6ce8de5757, type: 3}
+  m_Name: DoorKey
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivalHorror.ItemData
+  itemId: key_rustic
+  displayName: Key
+  description: A Rustic looking key for Door
+  icon: {fileID: 0}
+  category: 1
+  stackable: 0
+  maxStack: 1
+  worldPrefab: {fileID: 34302904439151032, guid: 356dc1d22181f384d892a78b8400222b, type: 3}
+  examinePrefab: {fileID: 34302904439151032, guid: 356dc1d22181f384d892a78b8400222b, type: 3}
+  examineRotationOffset: {x: 0, y: 0, z: 0}
+  examineScaleMultiplier: 1
+  examineOnPickup: 1
+  pickupSound: {fileID: 0}
