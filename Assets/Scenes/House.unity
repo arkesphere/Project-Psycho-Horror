@@ -9079,7 +9079,7 @@ Transform:
   m_GameObject: {fileID: 955984414}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000014603138, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3237598, y: -0.25, z: 0.09106064}
+  m_LocalPosition: {x: -0.47624052, y: -0.25, z: 0.09106296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11465,6 +11465,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3839093347173571063, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 25c439c859950544bbb72e0e61204d57, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_Name
       value: Hands 1
@@ -18606,7 +18610,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 65.5
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
