@@ -5,6 +5,76 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Casing
+    second: {fileID: 2100000, guid: 7249b8a2def341242be843af139d10a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bullet_Head
+    second: {fileID: 2100000, guid: dec2f71dce0067149b8d7402e7fb7357, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grip_Nuts
+    second: {fileID: 2100000, guid: a51fa29ec1ff24743ae3674b9dba6d4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grip_Screws
+    second: {fileID: 2100000, guid: e06793e80e4cc684a9cb8fff3cae38ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grip_Wood
+    second: {fileID: 2100000, guid: 4a7ed09a88ffba3488ab15196012976f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal External_2
+    second: {fileID: 2100000, guid: af802437dc21317478bcb9cb6642383f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_External
+    second: {fileID: 2100000, guid: c66dc19b1a32bee4ba3882e853a9fbc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gun_Metal_Internal
+    second: {fileID: 2100000, guid: cf10a4ba0094346408c1aca8f1e23a76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Large_Grip_Pin_Metal
+    second: {fileID: 2100000, guid: a7df03b27f574fe449a1e7f3881a7539, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Levers_Metal
+    second: {fileID: 2100000, guid: f488aac54a2bee448a97af4d15712071, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mag_Metal
+    second: {fileID: 2100000, guid: 642cedb8ccca1514eb77a0c87bdca87b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pins_Metal
+    second: {fileID: 2100000, guid: 22e6259f570f4b540b48ac276bc916fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear_Sight_Metal
+    second: {fileID: 2100000, guid: 54fe905ef4fa9d54fb93bfa0a01c9c2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scews_Metal
+    second: {fileID: 2100000, guid: 4e50bfb178296234082b77aeb0eb9c50, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Bullet_Casing_Base_color

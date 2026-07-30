@@ -268,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076033600387255773}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.7071079}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -8.51393, y: 1.1, z: 11.204479}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -397,6 +397,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveInput: {fileID: 4095859818080764136, guid: 0ac8d1c6b87b0fb478f7701f713bea27, type: 3}
+  lookInput: {fileID: -8255790622273776908, guid: 0ac8d1c6b87b0fb478f7701f713bea27, type: 3}
+  sprintInputAction: {fileID: 8897024574841092174, guid: 0ac8d1c6b87b0fb478f7701f713bea27, type: 3}
+  jumpInput: {fileID: 0}
+  zoomInput: {fileID: -839768054624281719, guid: 0ac8d1c6b87b0fb478f7701f713bea27, type: 3}
+  crouchInput: {fileID: -4992457632779718639, guid: 0ac8d1c6b87b0fb478f7701f713bea27, type: 3}
   playerCamera: {fileID: 4283259922945839597}
   fov: 60
   invertCamera: 0
@@ -409,7 +415,6 @@ MonoBehaviour:
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
   enableZoom: 1
   holdToZoom: 1
-  zoomKey: 324
   zoomFOV: 30
   zoomStepTime: 5
   playerCanMove: 1
@@ -417,7 +422,6 @@ MonoBehaviour:
   maxVelocityChange: 10
   enableSprint: 1
   unlimitedSprint: 1
-  sprintKey: 304
   sprintSpeed: 3
   sprintDuration: 5
   sprintCooldown: 0.5
@@ -430,11 +434,9 @@ MonoBehaviour:
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
   enableJump: 0
-  jumpKey: 32
   jumpPower: 5
   enableCrouch: 1
   holdToCrouch: 1
-  crouchKey: 306
   speedReduction: 0.5
   bodyCollider: {fileID: 4092380109485940520}
   cameraDrop: 0.7
@@ -1625,43 +1627,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.098
+      value: -0.307
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.746
+      value: -1.674
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.196
+      value: -0.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99144495
+      value: 0.9960525
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.014222816
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.13052587
+      value: 0.0055954508
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.08744069
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -1.568
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 75
+      value: 0.781
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -10.045
       objectReference: {fileID: 0}
     - target: {fileID: -3839093347173571063, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
