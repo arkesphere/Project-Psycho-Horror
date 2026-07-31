@@ -169,11 +169,16 @@ public class FirstPersonController : MonoBehaviour
     public bool enableHeadBob = true;
     public Transform joint;
     public float bobSpeed = 10f;
-    public Vector3 bobAmount = new Vector3(.15f, .05f, 0f);
 
-    // Internal Variables
+// X = side weight shift, Y = footfall dip, Z = forward/back recoil.
+    public Vector3 bobAmount = new Vector3(.025f, .045f, .018f);
+
+// Internal Variables
     private Vector3 jointOriginalPos;
-    private float timer = 0;
+    private float timer = 0f;
+    private Vector3 currentBobOffset;
+    private float currentBobPitch;
+    private float currentBobRoll;
 
     #endregion
 
@@ -471,6 +476,9 @@ public class FirstPersonController : MonoBehaviour
     {
         if (!cameraCanMove)
             return;
+        
+        playerCamera.transform.rotation =
+            Quaternion.Euler(pitch + currentBobPitch, yaw, currentBobRoll);
 
         // Render mouse look every frame instead of waiting for FixedUpdate.
         // World rotation keeps the camera visually independent while the
@@ -717,35 +725,71 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
-    private void HeadBob()
+private void HeadBob()
+{
+    if (joint == null)
+        return;
+
+    Vector3 targetOffset = Vector3.zero;
+    float targetPitch = 0f;
+    float targetRoll = 0f;
+
+    Vector3 velocity = rb != null ? rb.linearVelocity : Vector3.zero;
+    velocity.y = 0f;
+
+    float referenceSpeed = isSprinting
+        ? sprintSpeed
+        : walkSpeed * CrouchSpeedMultiplier;
+
+    float speed01 = Mathf.Clamp01(
+        velocity.magnitude / Mathf.Max(referenceSpeed, 0.01f)
+    );
+
+    bool moving = isGrounded &&
+                  !PlayerControlGate.Locked &&
+                  speed01 > 0.03f;
+
+    if (moving)
     {
-        if(isWalking)
-        {
-            // Calculates HeadBob speed during sprint
-            if(isSprinting)
-            {
-                timer += Time.deltaTime * (bobSpeed + sprintSpeed);
-            }
-            // Calculates HeadBob speed during crouched movement
-            else if (isCrouched)
-            {
-                timer += Time.deltaTime * (bobSpeed * speedReduction);
-            }
-            // Calculates HeadBob speed during walking
-            else
-            {
-                timer += Time.deltaTime * bobSpeed;
-            }
-            // Applies HeadBob movement
-            joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);
-        }
-        else
-        {
-            // Resets when play stops moving
-            timer = 0;
-            joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
-        }
+        // Phase follows actual velocity, so it naturally eases in/out with movement.
+        float cadence = bobSpeed * Mathf.Lerp(0.65f, 1.2f, speed01);
+        if (isSprinting)
+            cadence *= 1.15f;
+
+        timer += cadence * Time.deltaTime;
+
+        float sideStep = Mathf.Sin(timer);
+
+        // Two compressed foot impacts per full left/right stride.
+        // A downward impact instead of an even sine-wave rise/fall feels weightier.
+        float footfall = Mathf.Pow(
+            0.5f + 0.5f * Mathf.Cos(timer * 2f),
+            1.7f
+        );
+
+        // Short fore/aft recoil around each footfall.
+        float recoil = Mathf.Sin(timer * 2f);
+
+        targetOffset = new Vector3(
+            sideStep * bobAmount.x,
+            -footfall * bobAmount.y,
+            (-footfall * 0.65f + recoil * 0.35f) * bobAmount.z
+        );
+
+        // Tiny counter-tilt as body weight transfers between feet.
+        targetRoll = -sideStep * Mathf.Clamp(bobAmount.x * 25f, 0.15f, 1.25f);
+        targetPitch = recoil * Mathf.Clamp(bobAmount.y * 16f, 0.10f, 1.0f);
     }
+
+    // Exponential smoothing avoids snapping to neutral when stopping.
+    float blend = 1f - Mathf.Exp(-14f * Time.deltaTime);
+
+    currentBobOffset = Vector3.Lerp(currentBobOffset, targetOffset, blend);
+    currentBobPitch = Mathf.Lerp(currentBobPitch, targetPitch, blend);
+    currentBobRoll = Mathf.Lerp(currentBobRoll, targetRoll, blend);
+
+    joint.localPosition = jointOriginalPos + currentBobOffset;
+}
 
 
     private void OnEnable()
