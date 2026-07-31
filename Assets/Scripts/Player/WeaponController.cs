@@ -2,11 +2,7 @@ using UnityEngine;
 
 namespace SurvivalHorror
 {
-    /// <summary>
-    /// Drives the first-person hand Animator (walk/run blend, shoot, reload, inspect,
-    /// swing) and shows/hides the gun and knife models on weapon swap.
-    /// Put this on the hand rig object that carries the Animator.
-    /// </summary>
+
     public class WeaponController : MonoBehaviour
     {
         private enum Weapon { Gun, Knife }
@@ -31,12 +27,14 @@ namespace SurvivalHorror
 
         private void Reset()
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
+            playerBody = GetComponent<Rigidbody>();
         }
 
         private void Awake()
         {
-            if (animator == null) animator = GetComponent<Animator>();
+            if (animator == null) animator = GetComponentInChildren<Animator>();
+            if(playerBody==null) playerBody = GetComponent<Rigidbody>();
             SetModelsActive();
         }
 
