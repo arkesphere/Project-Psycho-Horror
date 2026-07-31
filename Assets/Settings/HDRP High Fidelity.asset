@@ -265,7 +265,7 @@ MonoBehaviour:
         m_Id: With3Levels
     supportDecals: 1
     supportDecalLayers: 0
-    supportSurfaceGradient: 0
+    supportSurfaceGradient: 1
     decalNormalBufferHP: 0
     supportHighQualityLineRendering: 0
     highQualityLineRenderingMemoryBudget: 128
