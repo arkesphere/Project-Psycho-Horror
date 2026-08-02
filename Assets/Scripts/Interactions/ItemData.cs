@@ -18,7 +18,7 @@ namespace SurvivalHorror
     /// shared by every world instance and every inventory slot holding that item.
     /// Create via: Assets > Create > Survival Horror > Item Data
     /// </summary>
-    [CreateAssetMenu(fileName = "Item_New", menuName = "Survival Horror/Item Data")]
+    [CreateAssetMenu(fileName = "Item_New", menuName = "Items/Item Data")]
     public class ItemData : ScriptableObject
     {
         [Header("Identity")]
