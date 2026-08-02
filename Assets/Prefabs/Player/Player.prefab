@@ -449,7 +449,7 @@ MonoBehaviour:
   headroomPadding: 0.1
   enableHeadBob: 1
   joint: {fileID: 7291031702899181291}
-  bobSpeed: 10
+  bobSpeed: 2
   bobAmount: {x: 0, y: 0.05, z: 0}
 --- !u!114 &2649530915389586620
 MonoBehaviour:
@@ -1029,7 +1029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1666311572999803037
 Transform:
   m_ObjectHideFlags: 0
@@ -1805,7 +1805,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664284753040207879}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
   m_Controller: {fileID: 9100000, guid: f1d03999e0e704245b48c76a0a09d297, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
