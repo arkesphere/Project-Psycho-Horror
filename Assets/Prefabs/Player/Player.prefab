@@ -356,7 +356,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Height: 2
+  m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.3}
 --- !u!54 &4010911020270238789
@@ -408,7 +408,7 @@ MonoBehaviour:
   fov: 60
   invertCamera: 0
   cameraCanMove: 1
-  mouseSensitivity: 1.2
+  mouseSensitivity: 0.1
   maxLookAngle: 50
   lockCursor: 1
   crosshair: 1
@@ -419,11 +419,11 @@ MonoBehaviour:
   zoomFOV: 30
   zoomStepTime: 5
   playerCanMove: 1
-  walkSpeed: 1.99
+  walkSpeed: 2.5
   maxVelocityChange: 10
   enableSprint: 1
   unlimitedSprint: 1
-  sprintSpeed: 3
+  sprintSpeed: 4
   sprintDuration: 5
   sprintCooldown: 0.5
   sprintFOV: 65
@@ -1596,14 +1596,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6625512970563624989}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00018589932, y: 0.002570743, z: 0.0119753145, w: 0.999925}
-  m_LocalPosition: {x: -0.2883, y: -0.0021, z: 0.1109}
+  m_LocalRotation: {x: -0.00015892828, y: 0.0011944431, z: -0.0562505, w: 0.998416}
+  m_LocalPosition: {x: -0.3044014, y: 0.038414534, z: 0.09814223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8184584503859921744}
   m_Father: {fileID: 8630470205329431381}
-  m_LocalEulerAnglesHint: {x: 0.018, y: 0.295, z: 1.372}
+  m_LocalEulerAnglesHint: {x: -0.01, y: 0.138, z: -6.449}
 --- !u!1001 &2006868186678578518
 PrefabInstance:
   m_ObjectHideFlags: 0
