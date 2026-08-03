@@ -82080,10 +82080,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_2m_A (43)
       objectReference: {fileID: 0}
-    - target: {fileID: 8397102770797737584, guid: e54605ed6e813e84c90374b183e52f06, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 9206290945097116874, guid: e54605ed6e813e84c90374b183e52f06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.1016
