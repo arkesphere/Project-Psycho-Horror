@@ -127,8 +127,8 @@ namespace SurvivalHorror
             SetHighlight(false);
 
             // Raise the item up in front of the camera, RE-style, before it vanishes.
-            if (itemData.examineOnPickup && interactor.Examiner != null)
-                interactor.Examiner.BeginExamine(itemData);
+            if (itemData.examineOnPickup)
+                EventBus.Publish(new ItemExamineRequestedEvent(itemData));
 
             interactor.NotifyInteractableConsumed(this);
 

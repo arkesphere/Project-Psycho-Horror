@@ -11,7 +11,7 @@ namespace SurvivalHorror
     /// If you already have a PlayerInput / InputActions asset, replace the bodies
     /// of these properties with reads from your own actions.
     /// </summary>
-    public static class InputCompat
+    public static class InputCombat
     {
 #if ENABLE_INPUT_SYSTEM
         // New Input System reports mouse delta in pixels and scroll in 120-per-notch.
@@ -166,5 +166,6 @@ namespace SurvivalHorror
 #endif
             }
         }
+        
     }
 }

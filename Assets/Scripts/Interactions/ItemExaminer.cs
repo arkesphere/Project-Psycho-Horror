@@ -29,9 +29,6 @@ namespace SurvivalHorror
                  "Enabled for the duration of the examine.")]
         [SerializeField] private GameObject volumeToEnable;
 
-        [Tooltip("Optional UI panel showing the item name and description.")]
-        [SerializeField] private ExamineInfoBinding infoUI;
-
         [Header("Placement")]
         [Tooltip("Metres in front of the camera. Keep this comfortably beyond the camera's near clip plane.")]
         [SerializeField, Min(0.05f)] private float holdDistance = 0.45f;
@@ -71,9 +68,6 @@ namespace SurvivalHorror
         [Tooltip("Unity layer index the spawned model is moved to. -1 leaves prefab layers as-is. " +
                  "Useful if you want reflection probes or a custom pass to ignore held items.")]
         [SerializeField, Range(-1, 31)] private int examineUnityLayer = -1;
-
-        public event Action<ItemData> OnExamineBegin;
-        public event Action<ItemData> OnExamineEnd;
 
         public bool IsExamining { get; private set; }
         public ItemData CurrentItem { get; private set; }
@@ -170,10 +164,14 @@ namespace SurvivalHorror
             _pivot.localRotation = Quaternion.identity;
 
             SpawnAndFit(item, model);
+
+            // Begin at the opening scale before the object can render a full-size frame.
+            if (_instance != null && transitionDuration > 0f)
+                _instance.transform.localScale = Vector3.one * (_fittedScale * 0.001f);
+SpawnAndFit(item, model);
             SetVisualsActive(true);
 
-            infoUI?.Bind(item);
-            OnExamineBegin?.Invoke(item);
+            EventBus.Publish(new ItemExaminationChangedEvent(item, true));
         }
 
         /// <summary>Closes the examine view. No-op if nothing is being shown.</summary>
@@ -200,7 +198,7 @@ namespace SurvivalHorror
 
             if (Time.unscaledTime < _inputAllowedAt) return;
 
-            if (InputCompat.CancelPressed || InputCompat.InteractPressed)
+            if (InputCombat.CancelPressed || InputCombat.InteractPressed)
             {
                 EndExamine();
                 return;
@@ -214,8 +212,8 @@ namespace SurvivalHorror
         {
             if (_instance == null || playerCamera == null) return;
 
-            bool dragging = !requireHoldToRotate || InputCompat.RotateHeld;
-            Vector2 delta = dragging ? InputCompat.PointerDelta : Vector2.zero;
+            bool dragging = !requireHoldToRotate || InputCombat.RotateHeld;
+            Vector2 delta = dragging ? InputCombat.PointerDelta : Vector2.zero;
 
             if (delta.sqrMagnitude > 0.0000001f)
             {
@@ -238,7 +236,7 @@ namespace SurvivalHorror
         {
             if (!allowZoom) return;
 
-            float scroll = InputCompat.ScrollDelta;
+            float scroll = InputCombat.ScrollDelta;
             if (Mathf.Abs(scroll) < 0.0001f) return;
 
             _currentDistance = Mathf.Clamp(_currentDistance - scroll * zoomSpeed, zoomRange.x, zoomRange.y);
@@ -271,14 +269,12 @@ namespace SurvivalHorror
 
             TeardownInstance();
             SetVisualsActive(false);
-            infoUI?.Clear();
-
             CurrentItem = null;
             IsExamining = false;
             _closing = false;
 
             PlayerControlGate.Pop();
-            OnExamineEnd?.Invoke(finished);
+            EventBus.Publish(new ItemExaminationChangedEvent(finished, false));
         }
 
         private void SpawnAndFit(ItemData item, GameObject model)
@@ -358,5 +354,23 @@ namespace SurvivalHorror
                 for (int i = 0; i < examineLights.Length; i++)
                     if (examineLights[i] != null) examineLights[i].enabled = active;
         }
-    }
+    
+
+private void HandleExamineRequested(ItemExamineRequestedEvent gameEvent)
+        {
+            BeginExamine(gameEvent.Item);
+        }
+
+
+private void OnDisable()
+        {
+            EventBus.Unsubscribe<ItemExamineRequestedEvent>(HandleExamineRequested);
+        }
+
+
+private void OnEnable()
+        {
+            EventBus.Subscribe<ItemExamineRequestedEvent>(HandleExamineRequested);
+        }
+}
 }

@@ -44,7 +44,7 @@ Light:
   serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 7.957747
+  m_Intensity: 3183.0989
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -343,7 +343,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076033600387255773}
-  m_Material: {fileID: 13400000, guid: afac88f3db69d4746a038ee7b27469d8, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -543,7 +543,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1297,8 +1297,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivalHorror.PlayerInteractor
   playerCamera: {fileID: 4283259922945839597}
   inventory: {fileID: 1296756908991939985}
-  examiner: {fileID: 5773445300141309595}
-  promptUI: {fileID: 0}
   worldPrompt: {fileID: 0}
   interactKeyHint: E
   interactDistance: 1.2
@@ -1478,12 +1476,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivalHorror.Inventory
   capacity: 12
   slots:
-  - item: {fileID: 0}
-    quantity: 0
-  - item: {fileID: 0}
-    quantity: 0
-  - item: {fileID: 0}
-    quantity: 0
+  - item: {fileID: 11400000, guid: bc74bd0cfec4b2749adc3d210106c7d0, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: f17526dc5f7d4e2428d6674ed963ac95, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 24e0cce82b4a1b14389bc9127608c305, type: 2}
+    quantity: 1
   - item: {fileID: 0}
     quantity: 0
   - item: {fileID: 0}
@@ -1554,7 +1552,6 @@ MonoBehaviour:
   backdrop: {fileID: 5324431687835622409}
   backdropDistance: 0.55
   volumeToEnable: {fileID: 2002139916612457713}
-  infoUI: {fileID: 0}
   holdDistance: 0.45
   holdOffset: {x: 0, y: -0.02, z: 0}
   targetViewSize: 0.22
@@ -1707,6 +1704,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_Name
       value: Hands 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

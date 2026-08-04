@@ -36,5 +36,23 @@ namespace SurvivalHorror
             _messageTarget = 1f;
             _messageHideAt = Time.unscaledTime + duration;
         }
-    }
+    
+
+private void HandleMessageRequested(InteractionMessageRequestedEvent gameEvent)
+        {
+            ShowTemporaryMessage(gameEvent.Text, gameEvent.Duration);
+        }
+
+
+private void OnDisable()
+        {
+            EventBus.Unsubscribe<InteractionMessageRequestedEvent>(HandleMessageRequested);
+        }
+
+
+private void OnEnable()
+        {
+            EventBus.Subscribe<InteractionMessageRequestedEvent>(HandleMessageRequested);
+        }
+}
 }
