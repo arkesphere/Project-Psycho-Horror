@@ -634,7 +634,7 @@ MonoBehaviour:
     m_Value: 0.07
   contrast:
     m_OverrideState: 1
-    m_Value: -11.2
+    m_Value: -5.7
   colorFilter:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -812,7 +812,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 0.514151, b: 0.514151, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 1
-    m_Value: 0.261
+    m_Value: 1
   depthExtent:
     m_OverrideState: 0
     m_Value: 85.9
