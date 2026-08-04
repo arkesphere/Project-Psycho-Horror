@@ -63,5 +63,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a507284dcabcbf24fabd100a6867e182, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7891838743391527988}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a507284dcabcbf24fabd100a6867e182, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1905590129076263588}
   m_SourcePrefab: {fileID: 100100000, guid: a507284dcabcbf24fabd100a6867e182, type: 3}
+--- !u!1 &8329451013093901042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a507284dcabcbf24fabd100a6867e182, type: 3}
+  m_PrefabInstance: {fileID: 9176451758123646883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7891838743391527988
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8329451013093901042}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1458757, y: 0.14575136, z: 3.300516}
+  m_Center: {x: 0.42706597, y: 1.072875, z: 1.6502572}
+--- !u!65 &1905590129076263588
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8329451013093901042}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.14587674, y: 1.1457512, z: 3.300516}
+  m_Center: {x: -0.07293351, y: 0.57287514, z: 1.6502572}
