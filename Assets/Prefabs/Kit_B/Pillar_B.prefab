@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 33e3d6e555701c94d9422ff1331886b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.19007897
+      value: -11.899919
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33e3d6e555701c94d9422ff1331886b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.300046
+      value: 3.3100016
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33e3d6e555701c94d9422ff1331886b1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.189999
+      value: -15.000071
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33e3d6e555701c94d9422ff1331886b1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 33e3d6e555701c94d9422ff1331886b1, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: fbfc6747c932604459cd22b090b55ebb, type: 2}
+      objectReference: {fileID: 2100000, guid: 28b588a4e3c4d3e4eb5aa624079c2827, type: 2}
     - target: {fileID: 919132149155446097, guid: 33e3d6e555701c94d9422ff1331886b1, type: 3}
       propertyPath: m_Name
       value: Pillar_B
