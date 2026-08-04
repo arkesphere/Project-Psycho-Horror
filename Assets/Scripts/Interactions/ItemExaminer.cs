@@ -80,6 +80,9 @@ namespace SurvivalHorror
         private float _transitionTimer;
         private float _inputAllowedAt;
         private bool _closing;
+        
+        [Header("UI")]
+        [SerializeField] private Canvas examineInfoCanvas;
 
         private void Awake()
         {
@@ -110,6 +113,9 @@ namespace SurvivalHorror
                 for (int i = 0; i < examineLights.Length; i++)
                     if (examineLights[i] != null) examineLights[i].transform.SetParent(_rig, false);
             }
+            
+            if (examineInfoCanvas != null)
+                examineInfoCanvas.enabled = false;
 
             SyncRigToCamera();
             SetVisualsActive(false);
@@ -170,6 +176,9 @@ namespace SurvivalHorror
                 _instance.transform.localScale = Vector3.one * (_fittedScale * 0.001f);
 SpawnAndFit(item, model);
             SetVisualsActive(true);
+            
+            if (examineInfoCanvas != null)
+                examineInfoCanvas.enabled = true;
 
             EventBus.Publish(new ItemExaminationChangedEvent(item, true));
         }
@@ -269,6 +278,10 @@ SpawnAndFit(item, model);
 
             TeardownInstance();
             SetVisualsActive(false);
+            
+            if (examineInfoCanvas != null)
+                examineInfoCanvas.enabled = false;
+            
             CurrentItem = null;
             IsExamining = false;
             _closing = false;

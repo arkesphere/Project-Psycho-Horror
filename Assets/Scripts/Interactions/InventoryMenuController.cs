@@ -223,6 +223,8 @@ public void Open()
         {
             if (isOpen || inventory == null || PlayerControlGate.Locked)
                 return;
+            
+            Time.timeScale = 0f;
 
             isOpen = true;
             menuRoot.SetActive(true);
@@ -238,6 +240,8 @@ public void Close()
         {
             if (!isOpen)
                 return;
+
+            Time.timeScale = 1f;
 
             isOpen = false;
             navigationHeld = false;
