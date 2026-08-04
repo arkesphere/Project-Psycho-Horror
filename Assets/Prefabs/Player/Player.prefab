@@ -44,7 +44,7 @@ Light:
   serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3183.0989
+  m_Intensity: 5.0133805
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -343,8 +343,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076033600387255773}
-  m_Material: {fileID: 13400000, guid: c44f06a4fc6db5b45b70d73deb44b288, type: 2}
-
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -356,10 +355,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4010911020270238789
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -420,11 +419,11 @@ MonoBehaviour:
   zoomFOV: 30
   zoomStepTime: 5
   playerCanMove: 1
-  walkSpeed: 1.9
+  walkSpeed: 1
   maxVelocityChange: 10
   enableSprint: 1
   unlimitedSprint: 1
-  sprintSpeed: 3
+  sprintSpeed: 2
   sprintDuration: 5
   sprintCooldown: 0.5
   sprintFOV: 65
@@ -450,8 +449,8 @@ MonoBehaviour:
   headroomPadding: 0.1
   enableHeadBob: 1
   joint: {fileID: 7291031702899181291}
-  bobSpeed: 2
-  bobAmount: {x: 0, y: 0.05, z: 0}
+  bobSpeed: 1.5
+  bobAmount: {x: 0.008, y: 0.03, z: 0}
 --- !u!114 &2649530915389586620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1559,7 +1558,7 @@ MonoBehaviour:
   rotateSpeed: 220
   requireHoldToRotate: 1
   invertY: 0
-  idleSpinSpeed: 8
+  idleSpinSpeed: 0
   allowZoom: 1
   zoomSpeed: 1
   zoomRange: {x: 0.28, y: 0.7}
@@ -1570,6 +1569,7 @@ MonoBehaviour:
   - {fileID: 8473931295938265430}
   - {fileID: 8101974741460375008}
   examineUnityLayer: -1
+  examineInfoCanvas: {fileID: 0}
 --- !u!1 &6625512970563624989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,7 +1712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
