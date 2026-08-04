@@ -56412,46 +56412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1664284753040207879, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: bobSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: walkSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: bobAmount.x
-      value: 0.008
-      objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: bobAmount.y
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: sprintSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4092380109485940520, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4092380109485940520, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773445300141309595, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: idleSpinSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773445300141309595, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: examineInfoCanvas
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6806427510337640196, guid: 6752827ff2909d84a91d468688255e37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.32
@@ -56491,10 +56451,6 @@ PrefabInstance:
     - target: {fileID: 6806427510337640196, guid: 6752827ff2909d84a91d468688255e37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8101974741460375008, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: m_Intensity
-      value: 5.0133805
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
