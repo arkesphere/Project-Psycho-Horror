@@ -1,5 +1,4 @@
 using UnityEngine;
-
 namespace SurvivalHorror
 {
     /// <summary>
@@ -17,39 +16,36 @@ namespace SurvivalHorror
         /// <summary>True while at least one system is holding the player still.</summary>
         public static bool Locked => _lockCount > 0;
 
-        /// <summary>Raised whenever the locked state flips. Argument is the new Locked value.</summary>
-        public static event System.Action<bool> OnLockChanged;
-
-        public static void Push()
+public static void Push()
         {
             _lockCount++;
             if (_lockCount == 1)
             {
                 ApplyCursor(true);
-                OnLockChanged?.Invoke(true);
+                EventBus.Publish(new PlayerControlLockChangedEvent(true));
             }
         }
 
-        public static void Pop()
+public static void Pop()
         {
             if (_lockCount == 0) return;
             _lockCount--;
             if (_lockCount == 0)
             {
                 ApplyCursor(false);
-                OnLockChanged?.Invoke(false);
+                EventBus.Publish(new PlayerControlLockChangedEvent(false));
             }
         }
 
         /// <summary>Call this on scene load to avoid a stale lock softlocking the player.</summary>
-        public static void ForceClear()
+public static void ForceClear()
         {
             bool wasLocked = Locked;
             _lockCount = 0;
             if (wasLocked)
             {
                 ApplyCursor(false);
-                OnLockChanged?.Invoke(false);
+                EventBus.Publish(new PlayerControlLockChangedEvent(false));
             }
         }
 

@@ -19,6 +19,7 @@ namespace SurvivalHorror
         private void Awake()
         {
             if (root == null) root = gameObject;
+            EventBus.Subscribe<ItemExaminationChangedEvent>(HandleExaminationChanged);
             Clear();
         }
 
@@ -40,5 +41,18 @@ namespace SurvivalHorror
         {
             if (root != null) root.SetActive(false);
         }
-    }
+    
+
+private void HandleExaminationChanged(ItemExaminationChangedEvent gameEvent)
+        {
+            if (gameEvent.IsExamining) Bind(gameEvent.Item);
+            else Clear();
+        }
+
+
+private void OnDestroy()
+        {
+            EventBus.Unsubscribe<ItemExaminationChangedEvent>(HandleExaminationChanged);
+        }
+}
 }

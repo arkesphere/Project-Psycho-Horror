@@ -4,13 +4,18 @@ namespace SurvivalHorror
 {
     public enum ItemCategory
     {
-        Consumable,
-        KeyItem,
         Weapon,
-        Ammo,
-        Ingredient,
-        Document,
-        Treasure
+        Medical,
+        KeyItem,
+        Story
+    }
+    
+    public enum InventoryMenuCategory
+    {
+        Weapon,
+        Medical,
+        KeyItem,
+        Story
     }
 
     /// <summary>
@@ -26,8 +31,11 @@ namespace SurvivalHorror
         public string itemId;
         public string displayName = "New Item";
         [TextArea(2, 5)] public string description;
-        public Sprite icon;
         public ItemCategory category = ItemCategory.KeyItem;
+        
+        [Header("Inventory Menu")]
+        [Tooltip("Lower numbers appear first in the inventory carousel.")]
+        [Min(0)] public int inventorySortOrder;
 
         [Header("Stacking")]
         public bool stackable = false;
@@ -46,6 +54,9 @@ namespace SurvivalHorror
         [Min(0.05f)] public float examineScaleMultiplier = 1f;
         [Tooltip("Show the examine view automatically the moment this item is picked up.")]
         public bool examineOnPickup = true;
+        
+        [Header("Inventory Preview")]
+        public Vector3 inventoryRotationOffset;
 
         [Header("Audio")]
         public AudioClip pickupSound;

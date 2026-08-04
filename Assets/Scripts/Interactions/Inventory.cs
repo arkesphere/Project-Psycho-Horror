@@ -21,19 +21,12 @@ namespace SurvivalHorror
 
     /// <summary>
     /// Fixed-capacity slot inventory. Put this on the player root alongside
-    /// PlayerInteractor. Subscribe to OnChanged from your UI to redraw.
+    /// PlayerInteractor. UI systems subscribe to InventoryChangedEvent to redraw.
     /// </summary>
     public class Inventory : MonoBehaviour
     {
         [SerializeField, Min(1)] private int capacity = 12;
         [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
-
-        /// <summary>Fired after any mutation. Use this to refresh UI.</summary>
-        public event Action OnChanged;
-        /// <summary>Fired with the item and the amount actually taken in.</summary>
-        public event Action<ItemData, int> OnItemAdded;
-        /// <summary>Fired with the item and the amount actually removed.</summary>
-        public event Action<ItemData, int> OnItemRemoved;
 
         public int Capacity => capacity;
         public IReadOnlyList<InventorySlot> Slots => slots;
@@ -91,8 +84,8 @@ namespace SurvivalHorror
             int added = amount - leftover;
             if (added > 0)
             {
-                OnItemAdded?.Invoke(item, added);
-                OnChanged?.Invoke();
+                EventBus.Publish(new InventoryItemChangedEvent(this, item, added, true));
+                EventBus.Publish(new InventoryChangedEvent(this));
             }
 
             return leftover == 0;
@@ -118,8 +111,8 @@ namespace SurvivalHorror
                 if (slot.quantity <= 0) slot.Clear();
             }
 
-            OnItemRemoved?.Invoke(item, amount);
-            OnChanged?.Invoke();
+            EventBus.Publish(new InventoryItemChangedEvent(this, item, amount, false));
+            EventBus.Publish(new InventoryChangedEvent(this));
             return true;
         }
 
@@ -166,7 +159,7 @@ namespace SurvivalHorror
         public void ClearAll()
         {
             for (int i = 0; i < slots.Count; i++) slots[i].Clear();
-            OnChanged?.Invoke();
+            EventBus.Publish(new InventoryChangedEvent(this));
         }
 
         /// <summary>Expands the case, RE-style. Existing contents are preserved.</summary>
@@ -174,7 +167,7 @@ namespace SurvivalHorror
         {
             capacity = Mathf.Max(1, newCapacity);
             ResizeToCapacity();
-            OnChanged?.Invoke();
+            EventBus.Publish(new InventoryChangedEvent(this));
         }
 
 #if UNITY_EDITOR

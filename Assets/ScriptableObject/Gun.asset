@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 763e9259b44b877459297f6ce8de5757, type: 3}
-  m_Name: DoorKey
-  m_EditorClassIdentifier: Assembly-CSharp::SurvivalHorror.ItemData
-  itemId: key_rustic
-  displayName: Key
-  description: A Rustic looking key for Door
-  category: 2
+  m_Name: Gun
+  m_EditorClassIdentifier: SurvivalHorror.Interaction::SurvivalHorror.ItemData
+  itemId: gun
+  displayName: Gun
+  description: shoot people
+  category: 0
   inventorySortOrder: 0
   stackable: 0
   maxStack: 1
-  worldPrefab: {fileID: 5120066315303393120, guid: 7dc5e299d4f561e49bb2eb53a5b62953, type: 3}
-  examinePrefab: {fileID: 5120066315303393120, guid: 7dc5e299d4f561e49bb2eb53a5b62953, type: 3}
+  worldPrefab: {fileID: 919132149155446097, guid: 0002525f379836c48adba11d7f34cc13, type: 3}
+  examinePrefab: {fileID: 919132149155446097, guid: 0002525f379836c48adba11d7f34cc13, type: 3}
   examineRotationOffset: {x: 0, y: 0, z: 0}
   examineScaleMultiplier: 1
   examineOnPickup: 1
-  inventoryRotationOffset: {x: 0, y: 0, z: 0}
+  inventoryRotationOffset: {x: 0, y: 90, z: 0}
   pickupSound: {fileID: 0}

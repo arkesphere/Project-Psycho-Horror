@@ -42,15 +42,15 @@ namespace SurvivalHorror
         {
             UpdateSpeed();
 
-            if (InputCompat.FirePressed)
+            if (InputCombat.FirePressed)
                 animator.SetTrigger(_current == Weapon.Gun ? ShootParam : SwingParam);
 
-            if (_current == Weapon.Gun && InputCompat.ReloadPressed) animator.SetTrigger(ReloadParam);
-            if (_current == Weapon.Gun && InputCompat.InspectPressed) animator.SetTrigger(InspectParam);
-            if (InputCompat.TouchPressed) animator.SetTrigger(TouchParam);
+            if (_current == Weapon.Gun && InputCombat.ReloadPressed) animator.SetTrigger(ReloadParam);
+            if (_current == Weapon.Gun && InputCombat.InspectPressed) animator.SetTrigger(InspectParam);
+            if (InputCombat.TouchPressed) animator.SetTrigger(TouchParam);
 
-            if (_current == Weapon.Gun && InputCompat.EquipKnifePressed) EquipKnife();
-            else if (_current == Weapon.Knife && InputCompat.EquipGunPressed) EquipGun();
+            if (_current == Weapon.Gun && InputCombat.EquipKnifePressed) EquipKnife();
+            else if (_current == Weapon.Knife && InputCombat.EquipGunPressed) EquipGun();
         }
 
         private void UpdateSpeed()

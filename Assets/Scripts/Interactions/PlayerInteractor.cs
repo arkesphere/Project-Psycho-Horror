@@ -19,9 +19,6 @@ namespace SurvivalHorror
         [Header("References")]
         [SerializeField] private Camera playerCamera;
         [SerializeField] private Inventory inventory;
-        [SerializeField] private ItemExaminer examiner;
-        [Tooltip("Screen-space messages only (\"No more room.\"). The per-object prompt is WorldPrompt below.")]
-        [SerializeField] private InteractionPromptUI promptUI;
         [Tooltip("The single floating box that shows an arrow from a distance and cross-fades to the key hint up close.")]
         [SerializeField] private WorldSpacePrompt worldPrompt;
         [SerializeField] private string interactKeyHint = "E";
@@ -51,15 +48,13 @@ namespace SurvivalHorror
 
         public Camera PlayerCamera => playerCamera;
         public Inventory Inventory => inventory;
-        public ItemExaminer Examiner => examiner;
         public IInteractable Focused => _focused;
 
         private void Reset()
         {
             playerCamera = GetComponentInChildren<Camera>();
             inventory = GetComponent<Inventory>();
-            examiner = GetComponentInChildren<ItemExaminer>();
-        }
+            }
 
         private void Awake()
         {
@@ -83,7 +78,7 @@ namespace SurvivalHorror
             ScanForInteractable();
             UpdatePromptState();
 
-            if (_focused != null && _focused.CanInteract && InputCompat.InteractPressed)
+            if (_focused != null && _focused.CanInteract && InputCombat.InteractPressed)
                 _focused.Interact(this);
         }
 
@@ -218,9 +213,9 @@ namespace SurvivalHorror
         }
 
         /// <summary>Short centre-screen notice, e.g. "No more room."</summary>
-        public void ShowMessage(string message, float duration = 1.8f)
+public void ShowMessage(string message, float duration = 1.8f)
         {
-            promptUI?.ShowTemporaryMessage(message, duration);
+            EventBus.Publish(new InteractionMessageRequestedEvent(message, duration));
         }
 
 #if UNITY_EDITOR

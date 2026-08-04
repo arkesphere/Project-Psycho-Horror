@@ -1,10 +1,7 @@
 {
-    "name": "Player",
-    "rootNamespace": "",
-    "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "SurvivalHorror.Architecture"
-    ],
+    "name": "SurvivalHorror.Architecture",
+    "rootNamespace": "SurvivalHorror",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
