@@ -343,7 +343,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076033600387255773}
-  m_Material: {fileID: 13400000, guid: afac88f3db69d4746a038ee7b27469d8, type: 2}
+  m_Material: {fileID: 13400000, guid: c44f06a4fc6db5b45b70d73deb44b288, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -356,7 +356,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Height: 1.8
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.3}
 --- !u!54 &4010911020270238789
@@ -383,7 +383,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &2032168933010791313
@@ -419,11 +419,11 @@ MonoBehaviour:
   zoomFOV: 30
   zoomStepTime: 5
   playerCanMove: 1
-  walkSpeed: 2.5
+  walkSpeed: 1.9
   maxVelocityChange: 10
   enableSprint: 1
   unlimitedSprint: 1
-  sprintSpeed: 4
+  sprintSpeed: 3
   sprintDuration: 5
   sprintCooldown: 0.5
   sprintFOV: 65
@@ -1057,7 +1057,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 231.16948
-  m_Range: 6.99
+  m_Range: 10
   m_SpotAngle: 74.98052
   m_InnerSpotAngle: 17.768116
   m_CookieSize2D: {x: 0.5, y: 0.5}
@@ -1653,6 +1653,10 @@ PrefabInstance:
       value: -10.045
       objectReference: {fileID: 0}
     - target: {fileID: -3839093347173571063, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3839093347173571063, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       propertyPath: 'm_Bones.Array.data[1]'
       value: 
       objectReference: {fileID: 0}
@@ -1789,6 +1793,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4309628677683717791}
     m_Modifications:
+    - target: {fileID: 771166842370227088, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989834451188583216, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1203508070625413746, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2982
@@ -1832,6 +1844,18 @@ PrefabInstance:
     - target: {fileID: 2015475844474065096, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
       propertyPath: m_Name
       value: APS_Gun_NoMotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095518526836694276, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724744009473270443, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608233727546235237, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

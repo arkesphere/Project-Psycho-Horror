@@ -56250,26 +56250,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: walkSpeed
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: sprintSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2032168933010791313, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: enableSprint
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3907980182838198528, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4092380109485940520, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6806427510337640196, guid: 6752827ff2909d84a91d468688255e37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4805589
@@ -56309,10 +56289,6 @@ PrefabInstance:
     - target: {fileID: 6806427510337640196, guid: 6752827ff2909d84a91d468688255e37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8713924489183298683, guid: 6752827ff2909d84a91d468688255e37, type: 3}
-      propertyPath: m_Range
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
