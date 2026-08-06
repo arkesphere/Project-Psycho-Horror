@@ -464,9 +464,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurvivalHorror.WeaponController
   animator: {fileID: 8782791824902980629}
+  gunAnim: {fileID: 42836233639081759}
   gunModel: {fileID: 0}
   knifeModel: {fileID: 0}
   playerBody: {fileID: 4010911020270238789}
+  playerCamera: {fileID: 0}
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  wallDistance: 0.75
+  sphereRadius: 0.1
+  facingThreshold: 0.8
+  wallBlendSpeed: 8
 --- !u!1 &1913514481487818712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,7 +2350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c890af8e71b9cfb49a7aa67a490f7fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwayDelay
-  cameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 5696012885164984094}
   deltaSmoothTime: 0.08
   positionSwayAmount: 0.012
   maxPositionSway: 0.045
@@ -2434,10 +2443,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2015475844474065096, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 42836233639081759}
   m_SourcePrefab: {fileID: 100100000, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
 --- !u!4 &8184584503859921744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1203508070625413746, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
   m_PrefabInstance: {fileID: 7000498212306766114}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8853703662804703722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2015475844474065096, guid: e8d57e75409af5748afce03afb9f8f56, type: 3}
+  m_PrefabInstance: {fileID: 7000498212306766114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &42836233639081759
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853703662804703722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e5760fd43a5e6c49be3769480d980ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
