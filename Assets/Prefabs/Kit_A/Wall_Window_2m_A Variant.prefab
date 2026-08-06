@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7906548754768208347, guid: 9a60b665322b81948afd96690ec7f434, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.064
       objectReference: {fileID: 0}
     - target: {fileID: 7906548754768208347, guid: 9a60b665322b81948afd96690ec7f434, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7906548754768208347, guid: 9a60b665322b81948afd96690ec7f434, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7906548754768208347, guid: 9a60b665322b81948afd96690ec7f434, type: 3}
       propertyPath: m_LocalRotation.w
@@ -114,6 +114,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Window_2m_A Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8461606341817039398, guid: c08ec01b515b446408b78e794dec0bbf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fa2446b953bd85f4f8a5bfd846fb3654, type: 2}
+    - target: {fileID: 8461606341817039398, guid: c08ec01b515b446408b78e794dec0bbf, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 07241cd0d2c67024cac4117044fefa0a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
