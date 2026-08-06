@@ -56,14 +56,21 @@ namespace SurvivalHorror
         private void UpdateSpeed()
         {
             if (animator == null) return;
+
             float speed = 0f;
+
             if (playerBody != null)
             {
                 Vector3 v = playerBody.linearVelocity;
                 v.y = 0f;
                 speed = v.magnitude;
             }
-            animator.SetFloat(SpeedParam, speed);
+
+            // Faster when accelerating, slower when decelerating.
+            float currentAnimSpeed = animator.GetFloat(SpeedParam);
+            float dampTime = speed > currentAnimSpeed ? 0.06f : 0.1f;
+
+            animator.SetFloat(SpeedParam, speed, dampTime, Time.deltaTime);
         }
 
         public void EquipKnife()
