@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
       objectReference: {fileID: 2100000, guid: 034159c161db15d42bea3d276e2965e6, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 06964da4dca5e1d41ad6bda29fb586b5, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 5935333863629709368, guid: cff453cf308e5a24d9e219dd2963206e, type: 3}
     - target: {fileID: 919132149155446097, guid: 06964da4dca5e1d41ad6bda29fb586b5, type: 3}
       propertyPath: m_Name
       value: Door_A

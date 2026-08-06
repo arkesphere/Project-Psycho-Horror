@@ -8,7 +8,7 @@ public class DoorLatch : MonoBehaviour
     [SerializeField] private float latchAngle = 1.5f;
     [SerializeField] private float clearAngle = 6f;
     [SerializeField] private float minimumPushSpeed = 0.03f;
-    [SerializeField] private float releaseImpulse = 2f;
+    [SerializeField] private float releaseImpulse = 0f;
     [SerializeField] private float releaseBlockTime = 0.15f;
 
     private Rigidbody doorRigidbody;
@@ -29,11 +29,19 @@ public class DoorLatch : MonoBehaviour
         openLimits = hinge.limits;
     }
 
-    private void Start()
-    {
-        hinge.useLimits = true;
-        LatchDoor();
-    }
+    private System.Collections.IEnumerator Start()
+{
+    // Let Unity initialize the prefab, Rigidbody, colliders and joint.
+    yield return new WaitForFixedUpdate();
+
+    doorRigidbody.linearVelocity = Vector3.zero;
+    doorRigidbody.angularVelocity = Vector3.zero;
+
+    Physics.SyncTransforms();
+
+    hinge.useLimits = true;
+    LatchDoor();
+}
 
     private void FixedUpdate()
     {
@@ -52,7 +60,7 @@ public class DoorLatch : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        TryRelease(collision, false);
+        TryRelease(collision, true);
     }
 
     private void OnCollisionStay(Collision collision)

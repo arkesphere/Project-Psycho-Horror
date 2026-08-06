@@ -23501,6 +23501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryPreviewRig
       objectReference: {fileID: 0}
+    - target: {fileID: 4574800851584489054, guid: b025cab0730f4034ab1796d9b5fe4b8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5393626962966761062, guid: b025cab0730f4034ab1796d9b5fe4b8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.33833
@@ -41893,7 +41897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1015918339
 Transform:
   m_ObjectHideFlags: 0
@@ -64008,6 +64012,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -205
       objectReference: {fileID: 0}
+    - target: {fileID: 703485774094386998, guid: cd28d166b21c8a443b127df7e2b68570, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50.80005
+      objectReference: {fileID: 0}
     - target: {fileID: 1222761073873536149, guid: cd28d166b21c8a443b127df7e2b68570, type: 3}
       propertyPath: m_Name
       value: InventoryCanvas
@@ -68293,7 +68301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1677062845
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -72059,7 +72067,7 @@ MonoBehaviour:
   version: 2
   globalVolume: 0
   mode: 1
-  size: {x: 67.75464, y: 13.342642, z: 33.511612}
+  size: {x: 67.75464, y: 13.342405, z: 33.323326}
   overrideRendererFilters: 0
   minRendererVolumeSize: 0.1
   objectLayerMask:
@@ -72097,7 +72105,7 @@ Transform:
   m_GameObject: {fileID: 1770195614}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5977898, y: 1.6294312, z: -20.045776}
+  m_LocalPosition: {x: -1.5977898, y: 1.629313, z: -20.13992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77654,23 +77662,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8314185145366901339, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710653
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8314185145366901339, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000022203253
+      value: 0.00000020861623
       objectReference: {fileID: 0}
     - target: {fileID: 8314185145366901339, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000089406946
+      value: 0.00000004265473
       objectReference: {fileID: 0}
     - target: {fileID: 8314185145366901339, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.707107
+      value: -0.00000013748506
       objectReference: {fileID: 0}
     - target: {fileID: 8314185145366901339, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8658799179589232865, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
       propertyPath: m_StaticEditorFlags

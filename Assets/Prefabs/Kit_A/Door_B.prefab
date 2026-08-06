@@ -10,35 +10,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.000018514012
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.5
+      value: 4.4999886
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.0000020489094
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.0000020489094
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000042146848
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000042146848
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -67,5 +67,126 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2368735944249125458}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1654474884378767330}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7363897414003629696}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 997473543568186880}
   m_SourcePrefab: {fileID: 100100000, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
+--- !u!1 &4124434409663938931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 906c95fdedc4061448b11e31a279e564, type: 3}
+  m_PrefabInstance: {fileID: 3890414017049000994}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2368735944249125458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124434409663938931}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.060856428, y: 0.9593383, z: 2.282238}
+  m_Center: {x: -0.00030256994, y: -0.49969447, z: 0.0638895}
+--- !u!54 &1654474884378767330
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124434409663938931}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 10
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!59 &7363897414003629696
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124434409663938931}
+  serializedVersion: 3
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0.0000008940697, z: 0}
+  m_Axis: {x: 1, y: 0, z: 90}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_UseSpring: 1
+  m_Spring:
+    spring: 0.5
+    damper: 0.5
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 1
+  m_ExtendedLimits: 0
+  m_UseAcceleration: 0
+  m_Limits:
+    min: -85
+    max: 95
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 3
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &997473543568186880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124434409663938931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db03f262708d1ef47aa0e00ca9e8adae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SurvivalHorror.World::DoorLatch
+  latchAngle: 1.5
+  clearAngle: 6
+  minimumPushSpeed: 0.15
+  releaseImpulse: 0
+  releaseBlockTime: 0.15
