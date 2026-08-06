@@ -9,6 +9,8 @@ namespace SurvivalHorror
 
         [Header("References")]
         [SerializeField] private Animator animator;
+
+        [SerializeField] private Animator gunAnim;
         [SerializeField] private GameObject gunModel;
         [SerializeField] private GameObject knifeModel;
         [Tooltip("Used to derive the Speed parameter for the walk/run blend.")]
@@ -24,6 +26,19 @@ namespace SurvivalHorror
         private static readonly int EquipGunParam = Animator.StringToHash("EquipGun");
 
         private Weapon _current = Weapon.Gun;
+        
+        [SerializeField] private Camera playerCamera;
+        [SerializeField] private LayerMask wallMask = ~0;
+
+        [SerializeField] private float wallDistance = 0.75f;
+        [SerializeField] private float sphereRadius = 0.12f;
+        [SerializeField] private float facingThreshold = 0.8f;
+        [SerializeField] private float wallBlendSpeed = 8f;
+
+        private static readonly int WallProximityParam =
+            Animator.StringToHash("WallProximity");
+
+        private float wallBlend;
 
         private void Reset()
         {
@@ -33,6 +48,8 @@ namespace SurvivalHorror
 
         private void Awake()
         {
+            if (playerCamera == null)
+                playerCamera = Camera.main;
             if (animator == null) animator = GetComponentInChildren<Animator>();
             if(playerBody==null) playerBody = GetComponent<Rigidbody>();
             SetModelsActive();
@@ -41,9 +58,13 @@ namespace SurvivalHorror
         private void Update()
         {
             UpdateSpeed();
+            UpdateWallProximity();
 
             if (InputCombat.FirePressed)
+            {
                 animator.SetTrigger(_current == Weapon.Gun ? ShootParam : SwingParam);
+                gunAnim.SetTrigger(_current== Weapon.Gun ? ShootParam : SwingParam);
+            }
 
             if (_current == Weapon.Gun && InputCombat.ReloadPressed) animator.SetTrigger(ReloadParam);
             if (_current == Weapon.Gun && InputCombat.InspectPressed) animator.SetTrigger(InspectParam);
@@ -51,6 +72,45 @@ namespace SurvivalHorror
 
             if (_current == Weapon.Gun && InputCombat.EquipKnifePressed) EquipKnife();
             else if (_current == Weapon.Knife && InputCombat.EquipGunPressed) EquipGun();
+        }
+        
+        private void UpdateWallProximity()
+        {
+            if (animator == null || playerCamera == null)
+                return;
+
+            bool nearWall = false;
+
+            Ray ray = new Ray(
+                playerCamera.transform.position,
+                playerCamera.transform.forward);
+
+            if (Physics.SphereCast(
+                    ray,
+                    sphereRadius,
+                    out RaycastHit hit,
+                    wallDistance,
+                    wallMask,
+                    QueryTriggerInteraction.Ignore))
+            {
+                float facing =
+                    Vector3.Dot(playerCamera.transform.forward, -hit.normal);
+
+                nearWall = facing > facingThreshold;
+            }
+
+            float target = nearWall ? 1f : 0f;
+
+            float current = animator.GetFloat(WallProximityParam);
+
+// Raise the weapon quickly, lower it more slowly.
+            float dampTime = target > current ? 0.08f : 0.18f;
+
+            animator.SetFloat(
+                WallProximityParam,
+                target,
+                dampTime,
+                Time.deltaTime);
         }
 
         private void UpdateSpeed()
