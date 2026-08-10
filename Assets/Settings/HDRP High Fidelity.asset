@@ -211,7 +211,7 @@ MonoBehaviour:
   m_PrefilterUseLightmapBicubicSampling: 0
   m_ShouldUseConservativeEnclosingSphere: 0
   m_RenderPipelineSettings:
-    supportShadowMask: 0
+    supportShadowMask: 1
     supportSSR: 1
     supportSSRTransparent: 1
     supportSSAO: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 0
       supportFabricConvolution: 0
-      maxDirectionalLightsOnScreen: 16
+      maxDirectionalLightsOnScreen: 32
       maxPunctualLightsOnScreen: 512
       maxAreaLightsOnScreen: 64
       maxCubeReflectionOnScreen: 32
@@ -319,21 +319,21 @@ MonoBehaviour:
       maxLocalVolumetricFogOnScreen: 254
     hdShadowInitParams:
       maxShadowRequests: 128
-      directionalShadowsDepthBits: 16
+      directionalShadowsDepthBits: 24
       punctualShadowFilteringQuality: 2
       directionalShadowFilteringQuality: 2
-      areaShadowFilteringQuality: 0
+      areaShadowFilteringQuality: 1
       punctualLightShadowAtlas:
-        shadowAtlasResolution: 1024
+        shadowAtlasResolution: 4096
         shadowAtlasDepthBits: 16
         useDynamicViewportRescale: 1
       areaLightShadowAtlas:
         shadowAtlasResolution: 4096
         shadowAtlasDepthBits: 16
-        useDynamicViewportRescale: 0
+        useDynamicViewportRescale: 1
       cachedPunctualLightShadowAtlas: 4096
       cachedAreaLightShadowAtlas: 4096
-      allowDirectionalMixedCachedShadows: 0
+      allowDirectionalMixedCachedShadows: 1
       shadowResolutionDirectional:
         m_Values: 00020000000400000008000000100000
         m_SchemaId:
@@ -351,7 +351,7 @@ MonoBehaviour:
       maxAreaShadowMapResolution: 4096
       supportScreenSpaceShadows: 1
       supportContactShadows: 1
-      maxScreenSpaceShadowSlots: 4
+      maxScreenSpaceShadowSlots: 16
       screenSpaceShadowBufferFormat: 48
     decalSettings:
       drawDistance: 1000
