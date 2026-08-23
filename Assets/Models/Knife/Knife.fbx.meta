@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: 08963d9758ea98647addf19de93a10da
+guid: e99c89ab727e0a143ba2bcfe60ed4315
 ModelImporter:
   serializedVersion: 24501
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: LP2_cheker_BaseColor
-    second: {fileID: 2800000, guid: 8bea900a5dc03494fac2ed7e2715aa0e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: LP2_cheker_Emissive
-    second: {fileID: 2800000, guid: 36ae55c60d0d5cf4a8d0953c29a5f138, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: LP2_cheker_Metallic
-    second: {fileID: 2800000, guid: 2ea9cc9ea08f30c4f9d0153f1361051b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: LP2_cheker_Normal
-    second: {fileID: 2800000, guid: 3a11df86240c2ac43bb33e78c45037ed, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: LP2_cheker_Roughness
-    second: {fileID: 2800000, guid: 9129abb5fe447ec41a53e359b879d3a4, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

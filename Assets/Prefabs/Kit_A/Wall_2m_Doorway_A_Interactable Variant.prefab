@@ -117,6 +117,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8658799179589232865, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1152678837753734150}
+    - targetCorrespondingSourceObject: {fileID: 8658799179589232865, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2174941767777709516}
+    - targetCorrespondingSourceObject: {fileID: 8658799179589232865, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1674859958086370320}
   m_SourcePrefab: {fileID: 100100000, guid: 1628e3494824ca04ca61ef5731df058e, type: 3}
 --- !u!1 &3856345113597710401 stripped
 GameObject:
@@ -208,3 +214,125 @@ MonoBehaviour:
   releaseBlockTime: 0.01
   openTrigger: OpenDoor
   animationLockTime: 0.8
+--- !u!114 &2174941767777709516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856345113597710401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b24b06feb28af4dbaa409070b4aaa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SurvivalHorror.World::DoorAudio
+  latch: {fileID: 1152678837753734150}
+  source: {fileID: 1674859958086370320}
+  openClips:
+  - {fileID: 8300000, guid: 22e97d4ba7285d1428236828cdb24921, type: 3}
+  - {fileID: 8300000, guid: 8efc3e192298a0d4094815228456f4b7, type: 3}
+  - {fileID: 8300000, guid: cd8c2ae77f35b6b4b89cf0c1472bb198, type: 3}
+  closeClips:
+  - {fileID: 8300000, guid: bc89b564ba1307c42b6ee2697731de7b, type: 3}
+  - {fileID: 8300000, guid: cd8c2ae77f35b6b4b89cf0c1472bb198, type: 3}
+  lockedClip: {fileID: 8300000, guid: 1d749a3bdeadc8d459c7633a49939696, type: 3}
+  volume: 0.9
+  pitchRange: {x: 0.95, y: 1.05}
+  maxDistance: 18
+--- !u!82 &1674859958086370320
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856345113597710401}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

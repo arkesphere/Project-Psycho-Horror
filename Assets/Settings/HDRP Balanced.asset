@@ -211,8 +211,9 @@ MonoBehaviour:
   - {fileID: 0}
   m_PrefilterUseLegacyLightmaps: 0
   m_PrefilterUseLightmapBicubicSampling: 0
+  m_ShouldUseConservativeEnclosingSphere: 0
   m_RenderPipelineSettings:
-    supportShadowMask: 0
+    supportShadowMask: 1
     supportSSR: 0
     supportSSRTransparent: 0
     supportSSAO: 1
@@ -240,6 +241,7 @@ MonoBehaviour:
     maximumWaterDecalCount: 48
     waterScriptInteractionsMode: 0
     waterFullCPUSimulation: 0
+    waterCausticsMeshResolution: 256
     supportComputeThickness: 0
     computeThicknessResolution: 1
     computeThicknessLayerMask:
@@ -349,7 +351,8 @@ MonoBehaviour:
       maxDirectionalShadowMapResolution: 2048
       maxPunctualShadowMapResolution: 2048
       maxAreaShadowMapResolution: 2048
-      supportScreenSpaceShadows: 0
+      supportScreenSpaceShadows: 1
+      supportContactShadows: 1
       maxScreenSpaceShadowSlots: 4
       screenSpaceShadowBufferFormat: 48
     decalSettings:
@@ -435,7 +438,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000101
+        m_Values: 010101
         m_SchemaId:
           m_Id: 
     maximumLODLevel:
@@ -450,7 +453,7 @@ MonoBehaviour:
       m_SchemaId:
         m_Id: With3Levels
     lightingQualitySettings:
-      AOStepCount: 040000000600000006000000
+      AOStepCount: 040000000600000009000000
       AOFullRes: 000000
       AOMaximumRadiusPixels: 200000002000000028000000
       AOBilateralUpsample: 000001
@@ -555,7 +558,6 @@ MonoBehaviour:
     streamingGpuCacheSettings:
     - format: 0
       sizeInMegaBytes: 128
-  m_UseRenderGraph: 1
   m_CompositorCustomVolumeComponentsList:
     m_InjectionPoint: 1
     m_CustomPostProcessTypesAsString: []

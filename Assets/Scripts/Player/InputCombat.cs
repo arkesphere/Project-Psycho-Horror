@@ -154,6 +154,19 @@ namespace SurvivalHorror
             }
         }
 
+        /// <summary>Toggle the flashlight. Default: F.</summary>
+        public static bool FlashlightPressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame;
+#else
+                return Input.GetKeyDown(KeyCode.F);
+#endif
+            }
+        }
+
         /// <summary>Switch to the gun. Default: 1.</summary>
         public static bool EquipGunPressed
         {

@@ -488,10 +488,10 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.56
+    m_Value: 2.06
   directLightingStrength:
     m_OverrideState: 1
-    m_Value: 0.093
+    m_Value: 0.055
   radius:
     m_OverrideState: 1
     m_Value: 0.25
@@ -573,6 +573,7 @@ MonoBehaviour:
   - {fileID: -5819432773163964927}
   - {fileID: 4350071663992475309}
   - {fileID: 1051593082334437004}
+  - {fileID: 0}
 --- !u!114 &530204085220461006
 MonoBehaviour:
   m_ObjectHideFlags: 3

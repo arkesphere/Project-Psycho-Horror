@@ -21,6 +21,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using SurvivalHorror;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -31,6 +32,22 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
     private Vector2 movementInput;
+
+    /// <summary>
+    /// World-space direction the player is trying to walk, independent of whether they
+    /// are actually moving. Pressing into a step cancels the velocity on contact, so
+    /// anything that needs to know "which way are they pushing" — the stair climber —
+    /// has to read the intent rather than the result.
+    /// </summary>
+    public Vector3 DesiredMoveDirection
+    {
+        get
+        {
+            Vector3 local = new Vector3(movementInput.x, 0f, movementInput.y);
+            if (local.sqrMagnitude < 0.0001f) return Vector3.zero;
+            return (Quaternion.Euler(0f, yaw, 0f) * local).normalized;
+        }
+    }
     private bool sprintInput;
     private bool jumpRequested;
 
@@ -45,6 +62,38 @@ public class FirstPersonController : MonoBehaviour
     #region Camera Movement Variables
 
     public Camera playerCamera;
+
+    [Header("Cinemachine")]
+    [Tooltip("Transform the look rotation is written to. A Cinemachine camera follows this " +
+             "instead of the controller driving the Camera directly, which would fight the brain. " +
+             "Leave empty to drive playerCamera.transform as before.")]
+    public Transform cameraTarget;
+
+    [Tooltip("Virtual camera whose lens drives FOV. Leave empty to set Camera.fieldOfView directly.")]
+    public CinemachineCamera virtualCamera;
+
+    /// <summary>Where look rotation goes: the Cinemachine target if present, else the camera.</summary>
+    private Transform LookTarget =>
+        cameraTarget != null ? cameraTarget : playerCamera.transform;
+
+    /// <summary>
+    /// FOV routed through the virtual camera's lens when Cinemachine is driving,
+    /// because the brain overwrites Camera.fieldOfView every frame.
+    /// </summary>
+    private float CurrentFov
+    {
+        get => virtualCamera != null ? virtualCamera.Lens.FieldOfView : playerCamera.fieldOfView;
+        set
+        {
+            if (virtualCamera != null)
+            {
+                var lens = virtualCamera.Lens;
+                lens.FieldOfView = value;
+                virtualCamera.Lens = lens;
+            }
+            else playerCamera.fieldOfView = value;
+        }
+    }
 
     public float fov = 60f;
     public bool invertCamera = false;
@@ -193,7 +242,7 @@ public class FirstPersonController : MonoBehaviour
         crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
-        playerCamera.fieldOfView = fov;
+        CurrentFov = fov;
         jointOriginalPos = joint.localPosition;
 
         #region Crouch Setup
@@ -349,11 +398,11 @@ public class FirstPersonController : MonoBehaviour
             // Lerps camera.fieldOfView to allow for a smooth transistion
             if(isZoomed)
             {
-                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, zoomFOV, zoomStepTime * Time.deltaTime);
+                CurrentFov = Mathf.Lerp(CurrentFov, zoomFOV, zoomStepTime * Time.deltaTime);
             }
             else if(!isZoomed && !isSprinting)
             {
-                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Time.deltaTime);
+                CurrentFov = Mathf.Lerp(CurrentFov, fov, zoomStepTime * Time.deltaTime);
             }
         }
 
@@ -367,7 +416,7 @@ public class FirstPersonController : MonoBehaviour
             if(isSprinting)
             {
                 isZoomed = false;
-                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, sprintFOV, sprintFOVStepTime * Time.deltaTime);
+                CurrentFov = Mathf.Lerp(CurrentFov, sprintFOV, sprintFOVStepTime * Time.deltaTime);
 
                 // Drain sprint remaining while sprinting
                 if(!unlimitedSprint)
@@ -466,8 +515,8 @@ public class FirstPersonController : MonoBehaviour
 
         // Ease the FOV back from sprint/zoom and settle the head bob to neutral, so
         // the examined item isn't framed by a lurching 80-degree sprint camera.
-        playerCamera.fieldOfView =
-            Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Time.deltaTime);
+        CurrentFov =
+            Mathf.Lerp(CurrentFov, fov, zoomStepTime * Time.deltaTime);
 
         if (enableHeadBob) HeadBob();
     }
@@ -477,14 +526,13 @@ public class FirstPersonController : MonoBehaviour
         if (!cameraCanMove)
             return;
         
-        playerCamera.transform.rotation =
-            Quaternion.Euler(pitch + currentBobPitch, yaw, currentBobRoll);
-
         // Render mouse look every frame instead of waiting for FixedUpdate.
-        // World rotation keeps the camera visually independent while the
+        // World rotation keeps the view visually independent while the
         // Rigidbody smoothly catches up to the same yaw in FixedUpdate.
-        playerCamera.transform.rotation =
-            Quaternion.Euler(pitch, yaw, 0f);
+        // The bob pitch/roll is folded in here; writing it and then immediately
+        // overwriting with a bob-free rotation used to discard the lean entirely.
+        LookTarget.rotation =
+            Quaternion.Euler(pitch + currentBobPitch, yaw, currentBobRoll);
     }
 
     void FixedUpdate()
