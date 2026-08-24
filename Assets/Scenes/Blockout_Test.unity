@@ -57492,6 +57492,82 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9206290945097116874, guid: e54605ed6e813e84c90374b183e52f06, type: 3}
   m_PrefabInstance: {fileID: 494166990}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1040832164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1040832166}
+  - component: {fileID: 1040832165}
+  m_Layer: 0
+  m_Name: Ambience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1040832165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040832164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713016db243b8124ca2cc0e35941378b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SurvivalHorror.World::SurvivalHorror.AmbienceController
+  beds:
+  - clip: {fileID: 8300000, guid: 0310112483529ce4cab8c48662ea443f, type: 3}
+    volume: 1
+    enabled: 1
+  - clip: {fileID: 8300000, guid: 4ee9ae99bdf963a42a19a89214749f74, type: 3}
+    volume: 0.155
+    enabled: 1
+  - clip: {fileID: 8300000, guid: 01321e1a7f2084d4fa0de2b7b2e04b7d, type: 3}
+    volume: 0.193
+    enabled: 0
+  bedVolume: 0.55
+  fadeInTime: 3
+  creaks:
+  - {fileID: 8300000, guid: ad1991318fe27ae4f958a56fd76ef010, type: 3}
+  - {fileID: 8300000, guid: db55f028d00509146a74aed215754050, type: 3}
+  - {fileID: 8300000, guid: 57f5d4eeacab9354a9867de7cc6f99e1, type: 3}
+  - {fileID: 8300000, guid: c7c92a021e3692d45a101f1e42935bc9, type: 3}
+  - {fileID: 8300000, guid: f5da4d40ef5124a4b9a5de02b36b9349, type: 3}
+  - {fileID: 8300000, guid: c8aad196d73c700449b2f48fd5a273c7, type: 3}
+  - {fileID: 8300000, guid: cc243c98388576b44852972df5bc987b, type: 3}
+  - {fileID: 8300000, guid: e30738d0cb4e6ee4a9fc47b0aefd3a12, type: 3}
+  - {fileID: 8300000, guid: 5ea25c1c171f0c74ca6c4b9c2ad5b6a1, type: 3}
+  - {fileID: 8300000, guid: 44fc4fbdbd97c4944aef4c483f4b2515, type: 3}
+  - {fileID: 8300000, guid: de39e397b0d5e8146943dfcbc3e058e4, type: 3}
+  - {fileID: 8300000, guid: 01fd7c8167063074f92c99c7405ed74e, type: 3}
+  - {fileID: 8300000, guid: 6530a3b07da5227499fcbdda6b9e83cb, type: 3}
+  - {fileID: 8300000, guid: a63dce86469fe774c97d7574a48ce8f9, type: 3}
+  creakVolume: 0.55
+  creakInterval: {x: 14, y: 38}
+  creakDistance: {x: 3, y: 9}
+  creakHeightSpread: 2.5
+  creakPitch: {x: 0.9, y: 1.1}
+--- !u!4 &1040832166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040832164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1041776385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115466,3 +115542,4 @@ SceneRoots:
   - {fileID: 2062092207}
   - {fileID: 844050666}
   - {fileID: 1773360748}
+  - {fileID: 1040832166}
