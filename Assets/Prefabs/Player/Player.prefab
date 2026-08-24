@@ -2979,6 +2979,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 948587634797918954}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8987815154253423227}
   m_SourcePrefab: {fileID: 100100000, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
 --- !u!1 &1664284753040207879 stripped
 GameObject:
@@ -3027,6 +3030,23 @@ MonoBehaviour:
   rotationSwayAmount: 3
   maxRotationSway: 3
   rotationFollowSpeed: 2
+--- !u!114 &8987815154253423227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664284753040207879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8e51b9666420c479a23286397a17a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Player::SurvivalHorror.LeftArmTouchLayer
+  animator: {fileID: 8782791824902980629}
+  layerName: LeftArm Touch
+  touchStateName: Touch_Left
+  fadeInTime: 0.14
+  fadeOutTime: 0.2
 --- !u!4 &2041092183590644413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3b7fce3ebe51fce4f8831c68c94dc10c, type: 3}
