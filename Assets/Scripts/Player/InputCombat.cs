@@ -154,6 +154,19 @@ namespace SurvivalHorror
             }
         }
 
+        /// <summary>Put the weapon away and go empty-handed. Default: H.</summary>
+        public static bool HolsterPressed
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                return Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame;
+#else
+                return Input.GetKeyDown(KeyCode.H);
+#endif
+            }
+        }
+
         /// <summary>Toggle the flashlight. Default: F.</summary>
         public static bool FlashlightPressed
         {

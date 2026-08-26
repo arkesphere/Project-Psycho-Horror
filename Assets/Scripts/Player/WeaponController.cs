@@ -6,7 +6,7 @@ namespace SurvivalHorror
 
     public class WeaponController : MonoBehaviour
     {
-        private enum Weapon { Gun, Knife }
+        private enum Weapon { None, Gun, Knife }
 
         [Header("References")]
         [SerializeField] private Animator animator;
@@ -42,8 +42,13 @@ namespace SurvivalHorror
         private static readonly int KnifeUnequipState = Animator.StringToHash("Knife_Unequip");
         private static readonly int GunEquipState = Animator.StringToHash("Gun_Equip");
         private static readonly int GunShootState = Animator.StringToHash("Gun_Shoot");
+        private static readonly int UnarmedState = Animator.StringToHash("Unarmed");
+        // Gates the unequip chains so putting a weapon away can end empty-handed
+        // instead of automatically drawing the other one.
+        private static readonly int UnarmedParam = Animator.StringToHash("Unarmed");
 
-        private Weapon _current = Weapon.Gun;
+        // Starts empty-handed; weapons are drawn explicitly.
+        private Weapon _current = Weapon.None;
 
         [SerializeField] private Camera playerCamera;
         [SerializeField] private LayerMask wallMask = ~0;
@@ -95,6 +100,10 @@ namespace SurvivalHorror
             if (animator == null) animator = GetComponentInChildren<Animator>();
             if(playerBody==null) playerBody = GetComponent<Rigidbody>();
             SetModelsActive();
+
+            // Unarmed is a one-frame pose clip of the hands already lowered out of
+            // view, so it holds correctly however the state is entered.
+            if (animator != null) animator.Play(UnarmedState, 0, 0f);
         }
 
         private void Update()
@@ -115,15 +124,20 @@ namespace SurvivalHorror
             if (InputCombat.FirePressed)
             {
                 if (_current == Weapon.Gun) FireGun();
-                else SwingKnife();
+                else if (_current == Weapon.Knife) SwingKnife();
+                // Empty hands have nothing to attack with.
             }
 
             if (_current == Weapon.Gun && InputCombat.ReloadPressed) animator.SetTrigger(ReloadParam);
             if (_current == Weapon.Gun && InputCombat.InspectPressed) animator.SetTrigger(InspectParam);
             if (InputCombat.TouchPressed) animator.SetTrigger(TouchParam);
 
-            if (_current == Weapon.Gun && InputCombat.EquipKnifePressed) EquipKnife();
-            else if (_current == Weapon.Knife && InputCombat.EquipGunPressed) EquipGun();
+            // Holster to empty. The door touch still works from here, because it runs
+            // on the masked left-arm layer rather than the base layer.
+            if (InputCombat.HolsterPressed && _current != Weapon.None) Holster();
+
+            if (_current != Weapon.Knife && InputCombat.EquipKnifePressed) EquipKnife();
+            else if (_current != Weapon.Gun && InputCombat.EquipGunPressed) EquipGun();
         }
 
         /// <summary>Any scroll notch toggles between the two weapons.</summary>
@@ -220,11 +234,19 @@ namespace SurvivalHorror
             switching = true;
             swinging = false;
             shooting = false;
+            animator.SetBool(UnarmedParam, false);
 
-            animator.SetTrigger(EquipKnifeParam);
-            animator.CrossFadeInFixedTime(GunUnequipState, swapCrossFade, 0);
-
-            yield return WaitForHandoffTo(KnifeEquipState, swapCrossFade + gunUnequipTime + 0.5f);
+            if (_current == Weapon.None)
+            {
+                // Nothing to put away, so draw straight from empty.
+                animator.CrossFadeInFixedTime(KnifeEquipState, swapCrossFade, 0);
+            }
+            else
+            {
+                animator.SetTrigger(EquipKnifeParam);
+                animator.CrossFadeInFixedTime(GunUnequipState, swapCrossFade, 0);
+                yield return WaitForHandoffTo(KnifeEquipState, swapCrossFade + gunUnequipTime + 0.5f);
+            }
 
             _current = Weapon.Knife;
             SetModelsActive();
@@ -243,16 +265,55 @@ namespace SurvivalHorror
             switching = true;
             swinging = false;
             shooting = false;
+            animator.SetBool(UnarmedParam, false);
 
-            animator.SetTrigger(EquipGunParam);
-            animator.CrossFadeInFixedTime(KnifeUnequipState, swapCrossFade, 0);
-
-            yield return WaitForHandoffTo(GunEquipState, swapCrossFade + knifeUnequipTime + 0.5f);
+            if (_current == Weapon.None)
+            {
+                animator.CrossFadeInFixedTime(GunEquipState, swapCrossFade, 0);
+            }
+            else
+            {
+                animator.SetTrigger(EquipGunParam);
+                animator.CrossFadeInFixedTime(KnifeUnequipState, swapCrossFade, 0);
+                yield return WaitForHandoffTo(GunEquipState, swapCrossFade + knifeUnequipTime + 0.5f);
+            }
 
             _current = Weapon.Gun;
             SetModelsActive();
 
             yield return new WaitForSeconds(gunEquipTime);
+
+            switching = false;
+        }
+
+        /// <summary>Puts the current weapon away and leaves the hands empty.</summary>
+        public void Holster()
+        {
+            if (switching || _current == Weapon.None) return;
+            StartCoroutine(HolsterRoutine());
+        }
+
+        /// <summary>
+        /// Plays the current weapon's unequip, then settles on the Unarmed pose. The
+        /// Unarmed bool is what stops the existing unequip chain from automatically
+        /// drawing the other weapon.
+        /// </summary>
+        private IEnumerator HolsterRoutine()
+        {
+            switching = true;
+            swinging = false;
+            shooting = false;
+            animator.SetBool(UnarmedParam, true);
+
+            bool fromGun = _current == Weapon.Gun;
+            int unequip = fromGun ? GunUnequipState : KnifeUnequipState;
+            float dur = fromGun ? gunUnequipTime : knifeUnequipTime;
+
+            animator.CrossFadeInFixedTime(unequip, swapCrossFade, 0);
+            yield return WaitForHandoffTo(UnarmedState, swapCrossFade + dur + 0.5f);
+
+            _current = Weapon.None;
+            SetModelsActive();
 
             switching = false;
         }
