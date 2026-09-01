@@ -21,8 +21,8 @@ MonoBehaviour:
   maxStack: 1
   worldPrefab: {fileID: 5120066315303393120, guid: 7dc5e299d4f561e49bb2eb53a5b62953, type: 3}
   examinePrefab: {fileID: 5120066315303393120, guid: 7dc5e299d4f561e49bb2eb53a5b62953, type: 3}
-  examineRotationOffset: {x: 0, y: 0, z: 0}
+  examineRotationOffset: {x: -0, y: 0, z: 0}
   examineScaleMultiplier: 1
   examineOnPickup: 1
-  inventoryRotationOffset: {x: 0, y: 0, z: 0}
+  inventoryRotationOffset: {x: -0, y: 0, z: 0}
   pickupSound: {fileID: 0}

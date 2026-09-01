@@ -75,6 +75,24 @@ namespace SurvivalHorror
             }
         }
 
+        /// <summary>
+        /// Cursor position in screen pixels. Only meaningful while something has
+        /// freed the cursor (PlayerControlGate does that whenever it locks the
+        /// player), which is exactly when a pointer is wanted.
+        /// </summary>
+        public static Vector2 PointerPosition
+        {
+            get
+            {
+#if ENABLE_INPUT_SYSTEM
+                if (Mouse.current == null) return Vector2.zero;
+                return Mouse.current.position.ReadValue();
+#else
+                return Input.mousePosition;
+#endif
+            }
+        }
+
         /// <summary>Scroll wheel, roughly +/-1.0 per physical notch on both backends.</summary>
         public static float ScrollDelta
         {

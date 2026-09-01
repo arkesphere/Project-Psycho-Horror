@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SurvivalHorror
@@ -72,9 +73,26 @@ namespace SurvivalHorror
         public bool IsExamining { get; private set; }
         public ItemData CurrentItem { get; private set; }
 
+        [Header("Hotspots")]
+        [Tooltip("How far in front of the camera clickable parts are searched for. " +
+                 "Only needs to cover the zoom range.")]
+        [SerializeField, Min(0.1f)] private float hotspotAimDistance = 2f;
+        [Tooltip("Small floating prompt shown over the part the cursor is on. Use a " +
+                 "separate instance from PlayerInteractor's: that one is driven every " +
+                 "frame by the interactor and the two would fight over it.")]
+        [SerializeField] private WorldSpacePrompt hotspotPrompt;
+        [SerializeField] private string hotspotKeyHint = "E";
+        [Tooltip("Metres to lift the prompt off the part, toward the camera, so it is " +
+                 "not buried inside the model.")]
+        [SerializeField, Min(0f)] private float hotspotPromptClearance = 0.03f;
+
         private Transform _rig;
         private Transform _pivot;
         private GameObject _instance;
+        private ExamineHotspot[] _hotspots;
+        private ExamineHotspot _hoveredHotspot;
+        private Collider _hoveredCollider;
+        private float _previousTimeScale = 1f;
         private float _currentDistance;
         private float _fittedScale = 1f;
         private float _transitionTimer;
@@ -117,6 +135,12 @@ namespace SurvivalHorror
             if (examineInfoCanvas != null)
                 examineInfoCanvas.enabled = false;
 
+            if (hotspotPrompt != null)
+            {
+                hotspotPrompt.SetCamera(playerCamera);
+                hotspotPrompt.Hide();
+            }
+
             SyncRigToCamera();
             SetVisualsActive(false);
         }
@@ -157,6 +181,17 @@ namespace SurvivalHorror
             else
             {
                 PlayerControlGate.Push();
+
+                // Freeze the world, the same way InventoryMenuController does. The
+                // gate alone only stops the player — doors kept swinging and props
+                // kept animating behind the backdrop. Everything in here is already
+                // written against unscaled time, so nothing in the view stalls.
+                // The previous value is kept rather than assumed to be 1: the
+                // inventory menu hands straight over to this view while it is itself
+                // holding the game at zero.
+                _previousTimeScale = Time.timeScale;
+                Time.timeScale = 0f;
+
                 IsExamining = true;
             }
 
@@ -174,7 +209,7 @@ namespace SurvivalHorror
             // Begin at the opening scale before the object can render a full-size frame.
             if (_instance != null && transitionDuration > 0f)
                 _instance.transform.localScale = Vector3.one * (_fittedScale * 0.001f);
-SpawnAndFit(item, model);
+
             SetVisualsActive(true);
             
             if (examineInfoCanvas != null)
@@ -207,6 +242,16 @@ SpawnAndFit(item, model);
 
             if (Time.unscaledTime < _inputAllowedAt) return;
 
+            UpdateHotspotHover();
+
+            // A hotspot under the crosshair claims the interact key. Only when
+            // nothing is highlighted does the same key put the item down again.
+            if (InputCombat.InteractPressed && _hoveredHotspot != null)
+            {
+                EventBus.Publish(new ExamineHotspotActivatedEvent(CurrentItem, _hoveredHotspot.HotspotId));
+                return;
+            }
+
             if (InputCombat.CancelPressed || InputCombat.InteractPressed)
             {
                 EndExamine();
@@ -215,6 +260,88 @@ SpawnAndFit(item, model);
 
             HandleRotation();
             HandleZoom();
+        }
+
+        /// <summary>
+        /// Points at clickable parts of the held model with the MOUSE CURSOR, which
+        /// PlayerControlGate frees whenever it locks the player.
+        ///
+        /// Aiming from the screen centre cannot work here: the model is parented to
+        /// the camera, so looking around carries it along and the crosshair stays
+        /// pinned to the same spot on the object forever. Anything not dead centre —
+        /// the items lying in the bottom of a container, for instance — would be
+        /// permanently unreachable. The cursor moves independently, so it can.
+        ///
+        /// Left click is left alone: it is already the rotate-drag button. The
+        /// interact key takes what the cursor is over.
+        ///
+        /// Hotspot colliders are tested directly rather than through Physics.Raycast:
+        /// the model hovers about 45cm from the camera, well inside the player's own
+        /// capsule and often inside world geometry, so a scene raycast would hit the
+        /// room before it ever reached the item.
+        /// </summary>
+        private void UpdateHotspotHover()
+        {
+            if (_hotspots == null || _hotspots.Length == 0 || playerCamera == null) return;
+
+            // The rig is moved by transform every frame and these colliders have no
+            // Rigidbody, so without this the queries below run against last physics
+            // step's pose rather than where the model is actually being drawn.
+            Physics.SyncTransforms();
+
+            Ray ray = playerCamera.ScreenPointToRay(InputCombat.PointerPosition);
+
+            ExamineHotspot hit = null;
+            Collider hitCollider = null;
+            float nearest = float.MaxValue;
+
+            for (int i = 0; i < _hotspots.Length; i++)
+            {
+                var spot = _hotspots[i];
+                if (spot == null) continue;
+
+                foreach (var col in spot.Targets)
+                {
+                    if (col == null) continue;
+                    if (!col.Raycast(ray, out RaycastHit rh, hotspotAimDistance)) continue;
+                    if (rh.distance >= nearest) continue;
+
+                    nearest = rh.distance;
+                    hit = spot;
+                    hitCollider = col;
+                }
+            }
+
+            _hoveredHotspot = hit;
+            _hoveredCollider = hitCollider;
+
+            UpdateHotspotPrompt();
+        }
+
+        /// <summary>
+        /// Floats the key hint over whichever part the cursor is on, so the player can
+        /// see that a lid opens or an item can be lifted out. Anchored slightly toward
+        /// the camera from the part's own bounds — placed at the centre it would be
+        /// swallowed by the model it is labelling.
+        /// </summary>
+        private void UpdateHotspotPrompt()
+        {
+            if (hotspotPrompt == null) return;
+
+            if (_hoveredHotspot == null || _hoveredCollider == null)
+            {
+                hotspotPrompt.Hide();
+                return;
+            }
+
+            Bounds b = _hoveredCollider.bounds;
+            Vector3 toCamera = playerCamera.transform.position - b.center;
+            float lift = b.extents.magnitude + hotspotPromptClearance;
+
+            hotspotPrompt.SetState(
+                PromptState.Near,
+                b.center + toCamera.normalized * lift,
+                hotspotKeyHint);
         }
 
         private void HandleRotation()
@@ -286,6 +413,8 @@ SpawnAndFit(item, model);
             IsExamining = false;
             _closing = false;
 
+            Time.timeScale = _previousTimeScale;
+
             PlayerControlGate.Pop();
             EventBus.Publish(new ItemExaminationChangedEvent(finished, false));
         }
@@ -297,6 +426,9 @@ SpawnAndFit(item, model);
             _instance.transform.localRotation = Quaternion.Euler(item.examineRotationOffset);
             _instance.transform.localScale = Vector3.one;
             _instance.name = $"Examine_{item.name}";
+
+            _hotspots = _instance.GetComponentsInChildren<ExamineHotspot>(true);
+            _hoveredHotspot = null;
 
             StripGameplayComponents(_instance);
 
@@ -313,7 +445,11 @@ SpawnAndFit(item, model);
             if (examineRenderingLayer >= 0)
             {
                 uint mask = 1u << examineRenderingLayer;
-                for (int i = 0; i < renderers.Length; i++) renderers[i].renderingLayerMask = mask;
+                // Include inactive: a container's contents are hidden until the lid
+                // opens, and they must already be on the examine light layer by the
+                // time they appear or they would light up from the room instead.
+                foreach (var r in _instance.GetComponentsInChildren<Renderer>(true))
+                    r.renderingLayerMask = mask;
             }
 
             // Fit: scale so the largest bounds dimension matches targetViewSize.
@@ -343,7 +479,29 @@ SpawnAndFit(item, model);
                 rb.isKinematic = true;
                 rb.detectCollisions = false;
             }
-            foreach (var col in go.GetComponentsInChildren<Collider>(true)) col.enabled = false;
+            // Hotspot colliders have to stay live to be aimed at, but the model
+            // floats right where the player is standing, so they are forced to
+            // triggers — a solid collider there would shove the player around.
+            //
+            // Collected into a set first: a container's contents start inactive, and
+            // GetComponentInParent skips inactive objects, so testing per-collider
+            // would disable exactly the hotspots that matter and leave the items
+            // unclickable once the lid opened.
+            var hotspotColliders = new HashSet<Collider>();
+            foreach (var spot in go.GetComponentsInChildren<ExamineHotspot>(true))
+                foreach (var col in spot.Targets)
+                    if (col != null) hotspotColliders.Add(col);
+
+            foreach (var col in go.GetComponentsInChildren<Collider>(true))
+            {
+                if (hotspotColliders.Contains(col))
+                {
+                    col.enabled = true;
+                    col.isTrigger = true;
+                }
+                else col.enabled = false;
+            }
+
             foreach (var wi in go.GetComponentsInChildren<WorldItem>(true)) wi.enabled = false;
         }
 
@@ -355,6 +513,11 @@ SpawnAndFit(item, model);
 
         private void TeardownInstance()
         {
+            _hoveredHotspot = null;
+            _hoveredCollider = null;
+            _hotspots = null;
+            if (hotspotPrompt != null) hotspotPrompt.Hide();
+
             if (_instance != null) Destroy(_instance);
             _instance = null;
         }
@@ -363,9 +526,21 @@ SpawnAndFit(item, model);
         {
             if (backdrop != null) backdrop.SetActive(active);
             if (volumeToEnable != null) volumeToEnable.SetActive(active);
+
+            // The lights are authored switched OFF at the GameObject level, the same
+            // way the backdrop and the volume are, so that they never touch the room.
+            // Toggling only the component left them dark: enabling a component on an
+            // inactive GameObject does nothing. Both have to be set.
             if (examineLights != null)
+            {
                 for (int i = 0; i < examineLights.Length; i++)
-                    if (examineLights[i] != null) examineLights[i].enabled = active;
+                {
+                    var light = examineLights[i];
+                    if (light == null) continue;
+                    light.gameObject.SetActive(active);
+                    light.enabled = active;
+                }
+            }
         }
     
 

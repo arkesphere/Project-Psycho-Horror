@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763e9259b44b877459297f6ce8de5757, type: 3}
+  m_Name: Examine_Toolbox
+  m_EditorClassIdentifier: SurvivalHorror.Interaction::SurvivalHorror.ItemData
+  itemId: Examine_Toolbox
+  displayName: Toolbox
+  description: A metal toolbox. The lid is shut.
+  category: 2
+  inventorySortOrder: 0
+  stackable: 0
+  maxStack: 1
+  worldPrefab: {fileID: 0}
+  examinePrefab: {fileID: 3012076532933767948, guid: 7738c812c8bd3ca4d82a99c37c52d9f8, type: 3}
+  examineRotationOffset: {x: 0, y: 0, z: 0}
+  examineScaleMultiplier: 1
+  examineOnPickup: 0
+  inventoryRotationOffset: {x: 0, y: 0, z: 0}
+  pickupSound: {fileID: 0}

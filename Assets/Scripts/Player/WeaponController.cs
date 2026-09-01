@@ -212,8 +212,17 @@ namespace SurvivalHorror
             animator.SetFloat(SpeedParam, speed, dampTime, Time.deltaTime);
         }
 
+        /// <summary>
+        /// The knife is found in the garage toolbox, not carried from the start.
+        /// WeaponUnlocker flips this once the item reaches the inventory.
+        /// </summary>
+        public bool KnifeUnlocked { get; private set; }
+
+        public void UnlockKnife() => KnifeUnlocked = true;
+
         public void EquipKnife()
         {
+            if (!KnifeUnlocked) return;
             if (switching || _current == Weapon.Knife) return;
             StartCoroutine(SwapToKnife());
         }

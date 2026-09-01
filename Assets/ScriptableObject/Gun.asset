@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: SurvivalHorror.Interaction::SurvivalHorror.ItemData
   itemId: gun
-  displayName: Gun
+  displayName: Handgun
   description: shoot people
   category: 0
   inventorySortOrder: 0
   stackable: 0
   maxStack: 1
-  worldPrefab: {fileID: 919132149155446097, guid: 0002525f379836c48adba11d7f34cc13, type: 3}
-  examinePrefab: {fileID: 919132149155446097, guid: 0002525f379836c48adba11d7f34cc13, type: 3}
-  examineRotationOffset: {x: 0, y: 0, z: 0}
+  worldPrefab: {fileID: 1904384870022491063, guid: c1c0a9691f6344f42bda70607b23f6e7, type: 3}
+  examinePrefab: {fileID: 1904384870022491063, guid: c1c0a9691f6344f42bda70607b23f6e7, type: 3}
+  examineRotationOffset: {x: 270, y: 270, z: 0}
   examineScaleMultiplier: 1
   examineOnPickup: 1
-  inventoryRotationOffset: {x: 0, y: 90, z: 0}
+  inventoryRotationOffset: {x: 270, y: 270, z: 0}
   pickupSound: {fileID: 0}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -15,6 +16,15 @@ namespace SurvivalHorror
         [SerializeField, Min(0.01f)] private float targetModelSize = 1.1f;
         [SerializeField, Range(0.1f, 1f)] private float neighbourScale = 0.68f;
         [SerializeField, Min(1f)] private float selectedScale = 1.05f;
+        [Tooltip("Metres the unselected items are pushed away from the camera. The " +
+                 "carousel is otherwise flat, so depth of field has no depth to work " +
+                 "with and the neighbours stay as sharp as the selected item.")]
+        [SerializeField, Min(0f)] private float neighbourDepthOffset = 0.9f;
+
+        [Header("Motion")]
+        [Tooltip("Seconds to slide between items. 0 snaps.")]
+        [SerializeField, Min(0f)] private float transitionDuration = 0.28f;
+        [SerializeField] private Ease transitionEase = Ease.OutCubic;
 
         [Header("HDRP Lighting")]
         [Tooltip("HDRP Light Layer used by preview models. Match the preview lights to this layer so scene lighting cannot wash previews out.")]
@@ -56,12 +66,22 @@ namespace SurvivalHorror
                 FitAndCentre(model, slot, item);
 
                 slots.Add(slot);
-                
+
             }
-            Select(newSelectedIndex);
+            Select(newSelectedIndex, true);
         }
         
         public void Select(int newSelectedIndex)
+        {
+            Select(newSelectedIndex, false);
+        }
+
+        /// <summary>
+        /// Moves the carousel to an item. Pass <paramref name="instant"/> when the
+        /// list has just been rebuilt — the slots are new and have no previous
+        /// position worth animating from.
+        /// </summary>
+        public void Select(int newSelectedIndex, bool instant)
         {
             if (slots.Count == 0)
             {
@@ -75,14 +95,32 @@ namespace SurvivalHorror
             {
                 bool selected = i == selectedIndex;
 
-                slots[i].localPosition = new Vector3(
+                Vector3 targetPosition = new Vector3(
                     (i - selectedIndex) * itemSpacing,
                     0f,
-                    0f
+                    selected ? 0f : neighbourDepthOffset
                 );
 
-                slots[i].localScale = Vector3.one *
+                Vector3 targetScale = Vector3.one *
                                       (selected ? selectedScale : neighbourScale);
+
+                slots[i].DOKill();
+
+                if (instant || transitionDuration <= 0f)
+                {
+                    slots[i].localPosition = targetPosition;
+                    slots[i].localScale = targetScale;
+                    continue;
+                }
+
+                // Unscaled: the menu holds the game at timeScale 0 while it is open.
+                slots[i].DOLocalMove(targetPosition, transitionDuration)
+                    .SetEase(transitionEase)
+                    .SetUpdate(true);
+
+                slots[i].DOScale(targetScale, transitionDuration)
+                    .SetEase(transitionEase)
+                    .SetUpdate(true);
             }
         }
         
@@ -90,8 +128,11 @@ namespace SurvivalHorror
         {
             for (int i = 0; i < slots.Count; i++)
             {
-                if (slots[i] != null)
-                    Destroy(slots[i].gameObject);
+                if (slots[i] == null) continue;
+
+                // Kill first: a tween still driving a destroyed transform throws.
+                slots[i].DOKill();
+                Destroy(slots[i].gameObject);
             }
 
             slots.Clear();

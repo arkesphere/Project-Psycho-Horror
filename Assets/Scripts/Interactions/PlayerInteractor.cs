@@ -44,6 +44,7 @@ namespace SurvivalHorror
         private IInteractable _closestNearby;
 
         private readonly Collider[] _proximityBuffer = new Collider[16];
+        private readonly RaycastHit[] _castBuffer = new RaycastHit[16];
         private float _nextProximityCheck;
 
         public Camera PlayerCamera => playerCamera;
@@ -103,6 +104,7 @@ namespace SurvivalHorror
             {
                 var col = _proximityBuffer[i];
                 if (col == null) continue;
+                if (col.transform.IsChildOf(transform)) continue;
 
                 var candidate = col.GetComponentInParent<IInteractable>();
                 if (candidate == null || !candidate.CanInteract) continue;
@@ -150,20 +152,34 @@ namespace SurvivalHorror
             IInteractable found = null;
             Component foundComponent = null;
 
-            RaycastHit hit;
-            bool hitSomething = castRadius > 0f
-                ? Physics.SphereCast(ray, castRadius, out hit, interactDistance, interactionMask, triggerInteraction)
-                : Physics.Raycast(ray, out hit, interactDistance, interactionMask, triggerInteraction);
+            // The camera sits inside the player's own capsule, and a sweep that starts
+            // overlapping a collider reports it as a zero-distance hit. A single-result
+            // cast therefore always came back as the player and never saw the world, so
+            // gather every hit and take the nearest one that isn't part of the player.
+            int count = castRadius > 0f
+                ? Physics.SphereCastNonAlloc(ray, castRadius, _castBuffer, interactDistance, interactionMask, triggerInteraction)
+                : Physics.RaycastNonAlloc(ray, _castBuffer, interactDistance, interactionMask, triggerInteraction);
 
-            if (hitSomething)
+            float nearest = float.MaxValue;
+
+            for (int i = 0; i < count; i++)
             {
-                // GetComponentInParent lets the collider live on a child of the item root.
+                var hit = _castBuffer[i];
+                if (hit.collider == null) continue;
+                if (hit.collider.transform.IsChildOf(transform)) continue;
+
                 var candidate = hit.collider.GetComponentInParent<IInteractable>();
-                if (candidate != null && candidate.CanInteract && IsWithinViewAngle(hit.collider.transform))
-                {
-                    found = candidate;
-                    foundComponent = candidate as Component;
-                }
+                if (candidate == null || !candidate.CanInteract) continue;
+                if (!IsWithinViewAngle(hit.collider.transform)) continue;
+
+                // An initial overlap reports distance 0, which would otherwise always
+                // win; measure from the camera instead so ordering stays meaningful.
+                float dist = Vector3.Distance(ray.origin, hit.collider.bounds.ClosestPoint(ray.origin));
+                if (dist >= nearest) continue;
+
+                nearest = dist;
+                found = candidate;
+                foundComponent = candidate as Component;
             }
 
             if (ReferenceEquals(found, _focused)) return;
